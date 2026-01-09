@@ -1,0 +1,386 @@
+﻿
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-01-09_050343_BM_Question02(명제) - HD 720p</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\(', '\)']],
+                displayMath: [['$$', '$$'], ['\[', '\]']]
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #333;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #81C784;
+            padding-bottom: 8px;
+            margin-top: 2em;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 2em 0;
+        }
+        ul, ol {
+            margin: 1em 0;
+            padding-left: 2em;
+        }
+        blockquote {
+            border-left: 4px solid #4CAF50;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>정리: 강의 전사(명제 · 수리논리 · LLM의 추론 관련 대화)</h1>
+<p>이 문서는 제공된 전사를 기반으로 수리논리와 명제, 진리의 정의, 그리고 최신 대형언어모델(LLM, ChatGPT 등)의 추론 방식 관련 토론 내용을 수학적으로 재구성·정리한 것이다. 핵심 개념과 세부 설명을 분리하고, 교육적 흐름(정의→성질→예제→응용), 개념 계층, 문제해결 구조를 명확히 제시한다.</p>
+<p>목차<br />
+- 핵심 개념 요약 (Core Concepts)<br />
+- 상세 설명·예시 (Details &amp; Examples)<br />
+- 개념 계층도 및 교육 흐름 (Concept Hierarchy &amp; Flow)<br />
+- 문제해결 구조 (Problem-Solving Structure)<br />
+- LLM과 전통적 논리 시스템 비교 (표 포함)<br />
+- 반복 등장하는 주제(패턴) 및 의미 분석<br />
+- Key Takeaways (실행 가능한 핵심 요지)</p>
+<hr />
+<h2>핵심 개념 (Core Concepts)</h2>
+<ul>
+<li>명제(命題, proposition)</li>
+<li>"참" 또는 "거짓"을 가지는 문장.</li>
+<li>변수 포함 식(예: $x-2=0$)은 변수 값에 따라 참/거짓이 될 수 있으므로 엄밀히 말하면 술어(predicate)나 오픈 식.</li>
+<li>술어와 진리집합(진리 집합, truth set)</li>
+<li>술어 $P(x)$의 진리집합: ${x \mid P(x)\ \text{참}}$.</li>
+<li>예: $P(x): x-2=0$이면 진리집합은 ${2}$.</li>
+<li>명제 연결사와 추론</li>
+<li>함의: $P \Rightarrow Q$ (P이면 Q이다)</li>
+<li>역(converse): $Q \Rightarrow P$</li>
+<li>대우(contrapositive): $\neg Q \Rightarrow \neg P$</li>
+<li>동치: $P \Leftrightarrow Q$</li>
+<li>참의 수학적 정의(형식론적 관점)</li>
+<li>모델 이론(model theory): 언어(형식언어), 구조(모델), 평가(valuation) 하에서 문장의 참값을 규정.</li>
+<li>Tarski의 진리 정의: 객체 언어와 메타언어를 구분하여 모델 내에서 'A는 참이다'를 형식적으로 정의.</li>
+<li>증명과 추론 체계</li>
+<li>증명(proof): 공리와 추론 규칙으로부터 문장을 유도하는 계산적 절차(증명론).</li>
+<li>완전성(Completeness), 건전성(Soundness): 증명 체계와 의미론 간의 관계.</li>
+<li>거리(metric)와 동치성의 의존성</li>
+<li>어떤 성질(예: 동일성, 근사성)은 선택한 구조(거리, 매트릭스)에 따라 달라짐.</li>
+<li>LLM(대형언어모델)의 추론 방식(논의된 핵심 문제)</li>
+<li>통계적 패턴 매칭 기반 vs. 규칙 기반(symbolic) 추론</li>
+<li>최신 추론 모델(Chain-of-Thought, self-consistency 등)은 내부적으로 "체크·검증" 절차를 거치는가?</li>
+<li>하이브리드(Neurosymbolic) 접근의 필요성 가능성</li>
+</ul>
+<hr />
+<h2>상세 설명·예시 (Details &amp; Examples)</h2>
+<ul>
+<li>변수 포함 문장의 참/거짓</li>
+<li>예: $P(x): x-2=0$.<ul>
+<li>의미: $P(x)$는 $x$에 대한 술어. 진리집합 ${2}$.</li>
+<li>관찰: "$P$는 참이다"라고 할 때 문맥 필요 — 변수 자유(free variables)가 있으면 문장(sentence)이 아님.</li>
+</ul>
+</li>
+<li>진리집합 개념의 확장</li>
+<li>술어 $P$에 대해 진리집합 $T_P = {x \in U \mid P(x)}$, 여기서 $U$는 해석의 우주(universe).</li>
+<li>진리집합은 해석(모델) $M$에 의존: $T_P^M$.</li>
+<li>거리(매트릭)와 동치성</li>
+<li>어떤 시스템에서 "같다"로 취급할 것인가의 문제: 유클리드 거리, 거리 0 동치, 동형(isomorphism) 여부 등.</li>
+<li>예: 두 점의 좌표가 다르지만 등거리 관점에서 동치일 수 있음(군 작용에 대한 동치류).</li>
+<li>참의 형식적 정의(철학적·수리논리학적 관점)</li>
+<li>Tarski (1935): 형식언어 $\mathcal{L}$의 문장 $\varphi$에 대해,<ul>
+<li>$\varphi$는 모델 $M$에서 참(denoted $M \models \varphi$) iff ... (구조적 귀납법으로 정의).</li>
+</ul>
+</li>
+<li>자연수 이론에서의 진리: 유한하게 기술 불가능한 집합(예: 진리 집합은 재귀적으로 열거 불가할 수 있음).</li>
+<li>증명 절차와 LLM의 차이(예시)</li>
+<li>수리 증명: 공리→정의→정리→증명(형식적 도출).</li>
+<li>LLM 반응: 확률적 다음 토큰 예측 + (추론 프롬프트 시) Chain-of-Thought로 내부 연쇄적 설명을 생성.</li>
+<li>문제: LLM의 "추론"은 형식 증명과 같지 않음 — 논리적 완전성/건전성 보장 없음.</li>
+<li>LLM의 추론 방식(세부)</li>
+<li>단순 통계 결합: 입력과 유사한 코퍼스에서 관찰된 토큰 시퀀스 확률을 기반으로 응답.</li>
+<li>강화학습(RLHF) 혹은 프롬프트 튜닝을 통해 사람 평가에 맞춘 출력 성향 조정.</li>
+<li>Chain-of-Thought: 내부적으로 여러 중간 추론 단계를 문자화하여 모방적 증명 수행 가능.</li>
+<li>Self-consistency / Verifier 방법: 여러 후보 추론을 생성 후 합의(majority)로 정답을 고르는 방법.</li>
+<li>규칙 기반 시스템(rule-based)과의 대비</li>
+<li>규칙 기반: 명제·추론 규칙을 명백히 인코딩(예: 전문가 시스템, Prolog).</li>
+<li>기계학습 기반: 통계적 패턴에서 일반화; 규칙은 암묵적 패턴으로 내재.</li>
+<li>하이브리드(Neuro-symbolic) 접근</li>
+<li>규칙·논리(명시적) + 신경망(통계적) 결합: 보완적 장점(증명 가능성 + 유연한 일반화).</li>
+</ul>
+<hr />
+<h2>개념 계층도 및 교육 흐름 (Concept Hierarchy &amp; Flow)</h2>
+<ol>
+<li>기초 논리 및 언어</li>
+<li>문법(형식언어), 문장(sentence), 자유변수 vs. 닫힌문장</li>
+<li>원자 명제(atom), 논리 연결사(∧, ∨, →, ¬, ↔), 양화사(∀, ∃)</li>
+<li>의미론(세만틱스)</li>
+<li>구조(모델) $M$, 해석 $\mathcal{I}$, 만족관계 $M \models \varphi$</li>
+<li>진리집합, 해석에 대한 의존성</li>
+<li>증명론(프루프 시스템)</li>
+<li>자연귀납(natural deduction), 공리적 체계(예: ZF, Peano)</li>
+<li>건전성과 완전성</li>
+<li>고급 주제</li>
+<li>모델 이론: 동형, 초구조, 컴팩트성 정리</li>
+<li>계산 가능성/복잡도: 결정 불가능성, 교착성</li>
+<li>메타수학: 불완전성(고달)</li>
+<li>응용</li>
+<li>형식 검증(formal verification), 자동증명(자동정리)</li>
+<li>AI의 추론: 기계학습 vs 논리적 추론</li>
+<li>교육적 적용: 효율적인 프롬프트 작성, 수학 교육 방향</li>
+</ol>
+<p>교육적 흐름(권장)<br />
+- 정의 → 간단 예제 → 진리 판정(문제) → 증명 기반 기술(자세한 증명법) → 컴퓨터화(자동정리·검증) → 응용(LLM과의 비교)</p>
+<hr />
+<h2>문제해결 구조 (Problem-Solving Structure)</h2>
+<p>문제 유형: "주어진 수식/술어가 어떤 값에서 참인가?" 또는 "주어진 명제들로부터 결론이 타당한가?"</p>
+<p>일반적 절차:<br />
+1. 형식화(Formalize): 자연어 명제를 형식언어로 변환.<br />
+   - 자유변수 제거, 범주(도메인) 명시.<br />
+2. 모델·해석 명시: 우주(도메인)와 해석 규칙 결정.<br />
+3. 진리판정:<br />
+   - 의미론적 방법: 모델에서 직접 평가, 진리집합 계산.<br />
+   - 증명론적 방법: 공리·추론 규칙으로 결론 유도.<br />
+4. 검증: 모델-증명 대응(예: 건전성/완전성 확인).<br />
+5. 알고리즘적 접근:<br />
+   - 결정 문제(decidability) 여부 판단.<br />
+   - 자동정리 도구(예: Prolog, SAT/SMT solvers, Coq/Lean) 활용.</p>
+<p>예시문제(구조화)<br />
+- 문제: $P(x): x-2=0$의 진리집합을 구하라.<br />
+  - 형식화: $P(x) := (x-2=0)$, 도메인 $\mathbb{R}$ 또는 $\mathbb{Z}$ 명시.<br />
+  - 진리집합: ${2}$ (도메인이 정수·실수 모두 동일)<br />
+- 문제: $P \rightarrow Q$가 주어졌을 때, $Q \rightarrow P$는 성립하는가?<br />
+  - 접근: 일반적으론 성립하지 않음. 역은 별도 가정 필요.<br />
+  - 대우: $P \rightarrow Q$는 $\neg Q \rightarrow \neg P$와 동치.</p>
+<hr />
+<h2>LLM(예: ChatGPT) vs 전통적 논리 시스템 비교표</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th style="text-align: right;">전통적 형식 논리(증명 시스템)</th>
+<th>LLM/통계적 모델</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>근본 원리</td>
+<td style="text-align: right;">공리 + 추론 규칙(형식증명)</td>
+<td>대규모 코퍼스의 확률적 패턴 학습</td>
+</tr>
+<tr>
+<td>출력의 보장</td>
+<td style="text-align: right;">건전성/완전성(체계 따른 보장 가능성)</td>
+<td>보장 없음(확률적 신뢰도)</td>
+</tr>
+<tr>
+<td>중간 증명 표시</td>
+<td style="text-align: right;">엄밀한 단계별 증명 가능</td>
+<td>Chain-of-Thought로 흉내 가능하지만 형식적 증명 아님</td>
+</tr>
+<tr>
+<td>오류 유형</td>
+<td style="text-align: right;">논리적 오류는 표면적으로 드러남(추론 규칙 위반)</td>
+<td>근거 없는(잘못된) 사실 생성(hallucination)</td>
+</tr>
+<tr>
+<td>확장성</td>
+<td style="text-align: right;">증명에 필요한 형식화 작업 필요</td>
+<td>자연어 질의응답에 강점, 비형식적 일반화 용이</td>
+</tr>
+<tr>
+<td>검증성</td>
+<td style="text-align: right;">자동정리기 통해 검증 가능(정형화)</td>
+<td>외부 검증 필요(검토/재확인)</td>
+</tr>
+<tr>
+<td>사용 사례</td>
+<td style="text-align: right;">정리 증명, 형식 검증, 자동정리</td>
+<td>번역, 요약, 대화, 초기 탐구(프롬프트 설계)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>반복되는 주제(패턴)와 그 의미 분석</h2>
+<ol>
+<li>"참"의 정의에 대한 반복적 질문</li>
+<li>의미: 수학적·철학적 엄밀성에 대한 요구. 교육 현장에서는 직관적 정의로 충분하지만, 연구·AI 검증 목적에선 형식화 필요.</li>
+<li>
+<p>중요성: LLM의 신뢰성 검증, 자동증명과의 통합에 직결.</p>
+</li>
+<li>
+<p>명제 간 관계(함의, 역, 대우) 강조</p>
+</li>
+<li>의미: 증명·논리적 추론의 기본 도구. 실제 수학 교육에서 핵심적인 사고 훈련(가정의 사용 및 반증).</li>
+<li>
+<p>중요성: 추론 알고리즘 설계 시 규칙기반 논리와의 접점 제공.</p>
+</li>
+<li>
+<p>LLM의 "추론" 본질에 관한 궁금증</p>
+</li>
+<li>의미: 통계 모델이 수행하는 과정이 '추론'에 해당하는지, 아니면 단순 확률적 재조합인지에 대한 철학적·기술적 질문.</li>
+<li>
+<p>중요성: 교육용 프롬프트 설계, 모델 설명 가능성(XAI), 신뢰성 확보 전략 수립과 관련.</p>
+</li>
+<li>
+<p>'수학적 사고'와 '질문의 기술' 중요성 반복</p>
+</li>
+<li>의미: 검색의 시대 → 질문의 시대 전환에 대한 직관. 좋은 질문을 구성하는 능력은 수학적 추론 능력과 연관.</li>
+<li>
+<p>중요성: 교육과정 재설계, AI 활용 역량 강화.</p>
+</li>
+<li>
+<p>핵심 기반 과목으로서의 '미분적분(캘큘러스)'과 '선형대수'</p>
+</li>
+<li>의미: 실무·연구에서 가장 빈번하게 사용되는 수학적 도구로서 교육의 우선순위 제시.</li>
+<li>중요성: 책(교재) 기획 방향, 커리큘럼 결정.</li>
+</ol>
+<hr />
+<h2>부족한 점(깃발) 및 개선 제안 (간략)</h2>
+<ul>
+<li>부족한 점</li>
+<li>"참의 정의"에 대한 형식적 세부(모델 이론, Tarski 정의 등) 설명 부족.</li>
+<li>자유변수 vs 닫힌문장 구분 등 엄밀한 논리 문법 설명이 약함.</li>
+<li>LLM의 내부 알고리즘(Chain-of-Thought, self-consistency 등)에 대한 기술적 깊이 부족.</li>
+<li>규칙 기반 논리 시스템(예: Prolog, SAT/SMT, Coq/Lean)의 실제 예시·비교 부족.</li>
+<li>교육적 제안(책 구성안)이 구체적이지 않음 — 대상 독자(실무자 vs 이론가) 분류 필요.</li>
+<li>개선 제안</li>
+<li>Tarski의 진리 정의, 모델 이론의 기본 정리(콤팩트성, Löwenheim–Skolem) 요약 추가.</li>
+<li>형식언어 문법(정의, 예) 정리 및 연습문제 포함.</li>
+<li>LLM 추론 관련 최신 논문(예: chain-of-thought, self-consistency, LoRA, RLHF 등)과 자동정리기(Lean/Coq) 간 비교 사례 추가.</li>
+<li>책 목차 제안: (1) 실무 캘큘러스·선형대수(응용 중심) → (2) 깊이 있는 해석학·대수(증명 중심) → (3) 수리논리와 AI 추론(융합 장).</li>
+</ul>
+<hr />
+<p>Key Takeaways (실행 가능한 핵심 요지)<br />
+- 명확한 형식화가 없으면 "참"의 판단이 애매하므로, 문제 시작 시 도메인과 언어(형식화)를 항상 명시할 것.<br />
+- 술어의 진리집합은 모델(해석)에 의존한다. 진리판정은 모델을 통해 이루어져야 함.<br />
+- $P \Rightarrow Q$는 대우 $\neg Q \Rightarrow \neg P$와 동치지만 역 $Q \Rightarrow P$는 일반적으로 성립하지 않음.<br />
+- LLM의 추론은 형식적 증명과 다르므로, 수학적 증명이 요구되는 작업에는 자동정리기 또는 하이브리드 검증체계를 병행 사용.<br />
+- 교재·교육 설계 시 실무용 능력(계산·응용)과 이론적 깊이(증명·구조)를 계층적으로 제공할 것.</p>
+<hr />
+<p>추가 정리 — 책·교재 기획(발제자의 의도 반영)<br />
+- 제안된 목적: 수학을 실무적으로 필요한 최소한의 깊이로 가르치되, 배경이 있는 독자에게는 더 깊은 이론(증명·구조)을 제공.<br />
+- 핵심 두 과목: 캘큘러스(미분적분학) + 선형대수<br />
+  - 권장 구성:<br />
+    1. 도구(계산) → 1~2학년 수준의 응용<br />
+    2. 해석학적 해석(엄밀성) 및 증명: 극한, 연속성, 미분·적분의 정리들(증명 포함)<br />
+    3. 선형대수의 구조적 이해: 벡터공간, 선형사상, 고유값, 정규형, 응용(최적화, 데이터 과학)<br />
+    4. 연결 장: 수리논리(형식화), 모델 및 증명 도구(Lean/Coq) 소개<br />
+    5. AI와의 연결: ChatGPT/LLM이 답변을 만드는 방식, 프롬프트 기법, 검증 과정<br />
+- 목표 독자: 수학 전공자는 물론, 공학·AI 실무자도 실무 수준으로 활용 가능한 지식 제공.</p>
+<hr />
+<p>Insights (추가적·심화적 지식; 참고 논문/도구 및 응용 예)<br />
+- 수학적 “진리”의 형식화<br />
+  - Tarski(1935): '진리'는 메타언어에서 객체언어의 문장을 모델에 대해 평가함으로써 형식적으로 정의 가능.<br />
+  - 참고: Alfred Tarski, "The Concept of Truth in Formalized Languages".<br />
+- 증명론 vs 의미론<br />
+  - Gödel의 완전성 정리(증명론과 의미론의 부합): 일阶逻辑(일차논리)의 경우 증명가능성과 의미론적 타당성이 일치.<br />
+  - Gödel 불완전성 정리: 충분한 표현력을 가진 산술 이론은 자신의 모든 참을 증명할 수 없음.<br />
+- 자동증명 도구<br />
+  - Coq, Lean: 형식화된 증명 작성 및 검증에 사용 가능. 수학자들이 직접 정리를 형식화하여 '증명 기계'로 검증.<br />
+  - SMT solvers(SAT, Z3): 명제·부울·이론에 대한 자동결정에 강함.<br />
+- LLM의 추론 관련 연구 (핵심 개념)<br />
+  - Chain-of-Thought prompting: LLM에게 중간 추론 단계를 생성하게 하여 복잡한 문제 해결 능력 향상(예: 복잡한 수리 문제).<br />
+  - Self-consistency: 여러 추론 경로를 샘플링하고 다수결로 결론 채택해 안정성 확보.<br />
+  - Verifier 모델: 생성된 결론을 별도 모델로 검증(증명 유효성 확인 유사).<br />
+- Neuro-symbolic 접근 사례<br />
+  - 신경망 + symbolic module 통합: 복잡한 수학적 추론에서 symbolic 모듈(예: 대수 변형기)을 호출해 정밀성 확보.<br />
+  - 예: 과학 계산에서 신경망이 제안한 가설을 SMT solver로 검증.<br />
+- 교육적 관점<br />
+  - "질문의 기술" 교육: 좋은 프롬프트(pretty prompt) 능력은 수학적 사고와 연결 — 교육 커리큘럼에 반영 가능.<br />
+  - 추천 교재: Stewart(Calculus), Strang(Linear Algebra) + Rudin/Spivak(이론적 해석서) — 실무/이론 균형.</p>
+<p>참고 예제(심화)<br />
+- Tarski 방식 간단 예:<br />
+  - 언어 $\mathcal{L}={=}$, 논리식을 $\varphi: \exists x\ (x+1=2)$.<br />
+  - 모델 $M$이 자연수 $(\mathbb{N},+)$이라면 $M \models \varphi$는 참(존재성 만족).<br />
+- 자동검증 워크플로우:<br />
+  1. 자연어 정리 → 형식언어 번역(자동/수동)<br />
+  2. Lean/Coq에 정리 입력<br />
+  3. 증명 시도: 자동 전개(전술) + 수동 보조<br />
+  4. 검증된 증명은 재현 가능·공개 가능</p>
+<hr />
+<p>최종 권장 작업(실행지향)<br />
+- 명제와 진리의 형식적 정의(모델 이론, Tarski) 요약을 포함한 짧은 보충 자료 제작.<br />
+- LLM과 형식논리의 차이를 사례별(예: 산술 문제, 증명 검증)로 비교하는 실습 포함.<br />
+- 책 목차 초안 작성 및 대상 독자(레벨) 정의:<br />
+  - 실무자용 요약 장(도구 중심, 예제 다수)<br />
+  - 이론가용 심화 장(증명·구조·모델 이론)<br />
+  - AI연계 장(LLM의 한계, 증명 자동화, 하이브리드)<br />
+- 교육용 워크숍: "질문의 기술"과 수리논리 기본을 결합한 단기 과정 설계.</p>
+<hr />
+<p>Insights (추가적 권장 자료 및 참고)<br />
+- 권장 읽을거리<br />
+  - Alfred Tarski, "The Concept of Truth in Formalized Languages" (진리정의)<br />
+  - Enderton, "A Mathematical Introduction to Logic" (입문서)<br />
+  - Hart, "Model Theory" 개론 자료(요약본)<br />
+  - 논문: "Chain of Thought Prompting Elicits Reasoning in Large Language Models" (2022), "Self-Consistency Improves Chain of Thought" 등<br />
+- 도구<br />
+  - Lean (https://leanprover.github.io) — 수학 정리 형식화, 커뮤니티 라이브러리(Mathlib)<br />
+  - Coq, Isabelle — 증명 보조 도구<br />
+  - Z3, CVC4 — SMT solver<br />
+- 구현 팁<br />
+  - LLM을 수학적 작업에 사용할 때는 항상 외부 검증기(수치 계산기, SMT 등)를 병행.<br />
+  - 프롬프트 설계 시: 문제의 형식화(도메인, 가정, 원하는 출력 형식)를 명시하면 오류 감소.<br />
+- 연구 제안<br />
+  - LLM의 Chain-of-Thought 출력에서 유효한 형식증명(예: Lean 코드)로 자동 변환하는 파이프라인 연구.<br />
+  - 통계적 모델이 제안한 가설을 자동으로 SMT/정리증명기와 연결하는 하이브리드 시스템 설계.</p>
+<p>끝.</p>
+    </div>
+</body>
+</html>

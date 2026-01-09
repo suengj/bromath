@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+.venv/
+finenv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.log.*
+
+# Config (API keys 등)
+config.py
+*.key
+*.pem
+
+# 프로젝트 특정 파일 제외
+extracted_audio/
+record_text_raw/
+clips/
+input_df.csv
+pipeline_output.log
+pipeline_log.txt
+
+# 기타 임시 파일
+*.tmp
+*.bak

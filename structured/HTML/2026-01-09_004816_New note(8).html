@@ -1,0 +1,475 @@
+﻿
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-01-09_004816_New note(8)</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\(', '\)']],
+                displayMath: [['$$', '$$'], ['\[', '\]']]
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #333;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #81C784;
+            padding-bottom: 8px;
+            margin-top: 2em;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 2em 0;
+        }
+        ul, ol {
+            margin: 1em 0;
+            padding-left: 2em;
+        }
+        blockquote {
+            border-left: 4px solid #4CAF50;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>메타데이터</h1>
+<ul>
+<li>파일명: New note(8).txt  </li>
+<li>녹음일시: 2025.11.22 (토) 오전 11:39  </li>
+<li>녹음길이: 63분 59초  </li>
+<li>발언자(녹취 표기): 참석자 1, 참석자 2, 참석자 3, 참석자 4, 참석자 5, 참석자 6  </li>
+<li>핵심 주제: 로또 명당 현상(잠실), 확률·통계적 모델링(큰수의법칙, 이항분포, 가설검정, 베이지안 관점), 사회·행동적 피처(지하철, 소득 등), 데이터·모델 설계 논의  </li>
+<li>기타: 녹음·녹화·편집 관련 기술 대화 및 예능(어린이 프로그램) 관련 잡담 포함</li>
+</ul>
+<hr />
+<h1>요약(시간순·발언자 보존)</h1>
+<p>아래는 녹취의 시간축을 보존하면서 핵심 내용(수학/통계 관련 토론)을 요약·재구성한 것. 발언자와 시간표시는 원문 타임스탬프에 맞춤.</p>
+<ul>
+<li>00:00–03:33 (참석자 1 중심)</li>
+<li>
+<p>최근 회의 결론 회상: "잠실 로또 명당" 이슈 던짐. 다음 1등 당첨 시기 예측 아이디어 제시. 녹화·자료 관리 관련 잡담.</p>
+</li>
+<li>
+<p>03:33–09:50 (참석자 1·2 대화)</p>
+</li>
+<li>명당 현상은 판매량 차이로 설명될 가능성 제시. 모든 점포가 동일 판매량이면 명당이 나타나기 어렵다는 논의.</li>
+<li>
+<p>큰수의법칙(표본 크기) 언급: 표본 30~40개가 평균 추정에 충분하다는 일반적 주장에 대해, 로또는 '숫자 추출'이므로 상황이 다름을 지적.</p>
+</li>
+<li>
+<p>09:50–16:16</p>
+</li>
+<li>"숫자(로또 번호)만 추출"되는 메커니즘 강조. 점포별 판매량 불균형이 표본 차이로 작용 → 명당 형성.</li>
+<li>
+<p>큰수의법칙과 확률적 의미 정리. 개별 표의 당첨확률은 동일하지만 점포별 판매량 차이가 전체에서 차이를 만듦.</p>
+</li>
+<li>
+<p>16:16–25:00 (가설 설정 논의)</p>
+</li>
+<li>1등 당첨 '시기'를 예측하려면 가정 필요. 간단한 접근: 점포의 판매비율이 일정하면 특정 기간 내 당첨확률을 계산 가능.</li>
+<li>
+<p>가설 제안: 잠실 명당의 연간 평균 1등 당첨 횟수 J가 3 이상인지 여부(H0 또는 대립가설 설정 가능).</p>
+</li>
+<li>
+<p>25:00–33:00 (이항모형·추정 아이디어)</p>
+</li>
+<li>예시 설정: 연간 52회의 1등(연 52주) 가정. 한 점포에서 연간 k = 3 회 관측됐을 때, 그 점포의 판매량 비율 p(= s_i / T)를 이항모형으로 추정 가능.</li>
+<li>
+<p>관찰된 사건의 사후확률(사후확률/사전확률 혼동 문제) 언급.</p>
+</li>
+<li>
+<p>33:00–44:00 (모델 구조 논의)</p>
+</li>
+<li>테이블(점포별 판매량·당첨수)를 이용한 단순 모델 제안. 명당 지속성(시간적 생존), 경쟁 점포 등장, 사회·지리적 피처(지하철 접근성, 지역 소득 등) 추가 변수 제시.</li>
+<li>
+<p>사전/사후 확률 구분 및 인간의 사후해석 오류(사후확률을 사전확률로 착각) 논의.</p>
+</li>
+<li>
+<p>44:00–51:00 (실수·계산 예측)</p>
+</li>
+<li>
+<p>샘플 수(연도수)를 넓히면(예: 수년치) 분석의 신뢰도가 올라감. 대략적 역추정: 전체 연간 판매량에 따라, 잠실 점포가 연간 3회 당첨이 나오려면 판매량이 전체의 어느 정도여야 하는지 계산 가능함(예: 3만장 가정 시 600~4700장 범위 등 대략치 언급).</p>
+</li>
+<li>
+<p>51:00–종료 (잡담, 편집·녹화 관련 등)</p>
+</li>
+<li>분석 외적 잡담(편집·녹화, 예능·어린이 프로그램 대화) 포함.</li>
+</ul>
+<hr />
+<h1>재구성: 핵심 수학·통계 개념 (정리형)</h1>
+<p>아래는 대화에서 등장한 핵심 개념을 정의·공식·응용 순으로 정리. 핵심 개념과 상세설명(예시/계산)은 분리해서 제시.</p>
+<h2>핵심 개념 (Core)</h2>
+<ol>
+<li>확률 모델: 각 회차의 1등 당첨은 ‘전국 판매된 표들 중 하나가 무작위로 선택’되는 사건</li>
+<li>표기: 연간 총 표 수 T, 점포 i의 연간 판매량 s_i, 점포 i의 연간 당첨 비율 p_i = s_i / T</li>
+<li>
+<p>각 회차(주)는 독립 베르누이 시행, 연간 52회 → K_i ∼ Binomial(n=52, p=p_i)</p>
+</li>
+<li>
+<p>관측·추정</p>
+</li>
+<li>관측값: 연간 K_i (예: K_i = 3)</li>
+<li>MLE: (\hat p_i = K_i / 52)</li>
+<li>
+<p>점포 판매량 추정: (\hat s_i = \hat p_i \cdot T)</p>
+</li>
+<li>
+<p>가설검정 (빈도주의)</p>
+</li>
+<li>예: 귀무가설 (H_0: p_i = p_0) vs 대립 (H_a: p_i &gt; p_0)</li>
+<li>
+<p>이항검정 사용, 또는 근사적으로 정규근사 (Z = \dfrac{\hat p_i - p_0}{\sqrt{p_0(1-p_0)/52}})</p>
+</li>
+<li>
+<p>베이지안 관점</p>
+</li>
+<li>사전 분포: (p_i \sim \text{Beta}(a,b))</li>
+<li>관측 후: (p_i | K_i \sim \text{Beta}(a + K_i, b + 52 - K_i))</li>
+<li>
+<p>신뢰구간 → 사후 신뢰구간(credible interval)</p>
+</li>
+<li>
+<p>다중비교·탐색 편향</p>
+</li>
+<li>
+<p>많은 점포를 관찰하면 우연히 높은 K_i가 나올 확률 증가 → 유의성 해석 시 보정 필요 (Bonferroni, FDR)</p>
+</li>
+<li>
+<p>모형 확장(패널·계량사회학)</p>
+</li>
+<li>시간에 따른 생존/변화(명당 지속성), 경쟁점 등장, 장소 특성(feature) 반영</li>
+<li>권장 모형: 계층 베이지안(Hierarchical Bayesian), 포아송 회귀(Poisson/Negative Binomial) 또는 패널 회귀</li>
+</ol>
+<h2>상세 설명·예시 (Detailed explanations &amp; examples)</h2>
+<ul>
+<li>Binomial 확률 공식:<br />
+  [<br />
+  P(K=k) = \binom{52}{k} p_i^k (1-p_i)^{52-k}<br />
+  ]</li>
+<li>k=3 관측에서 p_i의 MLE: (\hat p_i = 3/52 \approx 0.0577). 만약 전국 연간 표수 (T=30\,000)라면 (\hat s_i \approx 0.0577 \times 30\,000 \approx 1{,}731)장.</li>
+<li>신뢰구간(근사, 정규근사):<br />
+  [<br />
+  \hat p_i \pm z_{\alpha/2}\sqrt{\frac{\hat p_i(1-\hat p_i)}{52}}<br />
+  ]<br />
+  (작은 n·p 상황에서는 Wilson CI 권장)</li>
+<li>베이지안 업데이트 예:</li>
+<li>사전 Beta(1,1) (균일): posterior Beta(1+3, 1+49) = Beta(4,50)</li>
+<li>
+<p>95% 사후구간은 Beta 분포의 퀀타일로 계산</p>
+</li>
+<li>
+<p>Poisson 근사(희소 p, 큰 n):</p>
+</li>
+<li>만약 n(연간 회차 수)*p 작을 때, K ∼ Poisson(λ = 52 p)로 근사 가능</li>
+</ul>
+<hr />
+<h1>문제해결 구조(문제 정의 → 모형 → 계산 절차)</h1>
+<ol>
+<li>문제(요약)</li>
+<li>
+<p>질문: 특정 점포(예: 잠실 명당)가 관찰된 연간 당첨 횟수 K (예: 3)를 설명하려면 그 점포의 판매량 비율 p는 어느 범위여야 하는가? 또는 '명당'이라는 주장(특이성)이 유의미한가?</p>
+</li>
+<li>
+<p>데이터 필요</p>
+</li>
+<li>연간 총 판매량 T (전국)</li>
+<li>점포별 판매량 s_i (가능하면), 또는 점포별 상대 판매지표(영수증, 위치·유동인구 등)</li>
+<li>
+<p>관찰된 연 수(관측 기간), 각 연도의 당첨 횟수 K_i</p>
+</li>
+<li>
+<p>기본 모델(단계)<br />
+   A. 단일 점포 이항모형</p>
+<ul>
+<li>K_i ∼ Binomial(52, p_i)</li>
+<li>MLE, 이항검정, 신뢰구간 계산<br />
+   B. 베이지안 대안</li>
+<li>사전 설정 (Beta), 사후분포 계산, 신뢰구간·사후확률(예: P(p_i &gt; p_0 | data))<br />
+   C. 다중 점포 고려</li>
+<li>다수 점포 관찰 → 다중비교 보정 또는 계층모형 사용<br />
+   D. 확장: 회귀적 설명</li>
+<li>회귀(로그오즈 또는 포아송): K_i ∼ Poisson(λ_i), log λ_i = X_i β + u_i</li>
+<li>X_i: 지하철 거리, 상권 인구, 소득 수준, 명당 인지도 등</li>
+</ul>
+</li>
+<li>
+<p>검정·의사결정</p>
+</li>
+<li>빈도주의: p-value 산출, 유의수준(예: α=0.05) 기준 결정</li>
+<li>베이지안: 사후확률로 의사결정(예: P(p_i &gt; p_baseline | data) &gt; 0.95 라면 '특이' 판정)</li>
+<li>
+<p>중요: 여러 점포 중 '극단값' 찾기 위해서는 영(0)가설의 최대값 분포를 모사(Monte Carlo) 권장</p>
+</li>
+<li>
+<p>권장 절차(실무)</p>
+</li>
+<li>T와 관측기간(연수) 획득</li>
+<li>각 점포 K_i 집계 → 기본 이항/포아송 분석</li>
+<li>다중비교 감안 또는 계층모형으로 차이 검정</li>
+<li>설명 변수 수집(지리·사회적 피처) → 회귀/패널 분석</li>
+<li>시뮬레이션(무작위 분포하에서의 최대 K 분포)로 '우연성' 검증</li>
+</ol>
+<hr />
+<h1>표: 기호(Notation) 및 해석</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">기호</th>
+<th style="text-align: left;">의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">T</td>
+<td style="text-align: left;">연간 전국 총 판매 표수(장)</td>
+</tr>
+<tr>
+<td style="text-align: right;">s_i</td>
+<td style="text-align: left;">점포 i의 연간 판매량(장)</td>
+</tr>
+<tr>
+<td style="text-align: right;">p_i = s_i / T</td>
+<td style="text-align: left;">점포 i가 임의 당첨표·1등표가 될 확률</td>
+</tr>
+<tr>
+<td style="text-align: right;">n</td>
+<td style="text-align: left;">연간 당첨 기회 수 (보통 52주 → n = 52)</td>
+</tr>
+<tr>
+<td style="text-align: right;">K_i</td>
+<td style="text-align: left;">연간 점포 i의 1등 당첨 횟수 (관측값)</td>
+</tr>
+<tr>
+<td style="text-align: right;">Bin(n,p)</td>
+<td style="text-align: left;">이항 분포</td>
+</tr>
+<tr>
+<td style="text-align: right;">Beta(a,b)</td>
+<td style="text-align: left;">베타 분포 (사전/사후)</td>
+</tr>
+<tr>
+<td style="text-align: right;">H_0, H_a</td>
+<td style="text-align: left;">귀무/대립 가설</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>타임스탬프-주제 매핑(핵심 토픽 위치)</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">구간(분:초)</th>
+<th style="text-align: left;">주제(요약)</th>
+<th style="text-align: left;">주요 발언자</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">00:00–03:33</td>
+<td style="text-align: left;">회의 소개, 명당 주제 도입, 녹화 관련</td>
+<td style="text-align: left;">참석자 1</td>
+</tr>
+<tr>
+<td style="text-align: right;">03:33–09:50</td>
+<td style="text-align: left;">명당은 판매량 불균형으로 설명 가능성</td>
+<td style="text-align: left;">참석자 1,2</td>
+</tr>
+<tr>
+<td style="text-align: right;">09:50–16:16</td>
+<td style="text-align: left;">큰수의법칙, 수학적 의미 논의</td>
+<td style="text-align: left;">참석자 1,2</td>
+</tr>
+<tr>
+<td style="text-align: right;">16:16–25:00</td>
+<td style="text-align: left;">가설 설정(연간 당첨 횟수 J ≷ 3) 제안</td>
+<td style="text-align: left;">참석자 1,2</td>
+</tr>
+<tr>
+<td style="text-align: right;">25:00–33:00</td>
+<td style="text-align: left;">이항모형, MLE·사후확률 토의</td>
+<td style="text-align: left;">참석자 1,2</td>
+</tr>
+<tr>
+<td style="text-align: right;">33:00–44:00</td>
+<td style="text-align: left;">모델 확장(패널, 피처 추가)</td>
+<td style="text-align: left;">참석자 1,2</td>
+</tr>
+<tr>
+<td style="text-align: right;">44:00–51:00</td>
+<td style="text-align: left;">데이터 범위 확장(수년치), 예시 수치(3만장 가정)</td>
+<td style="text-align: left;">참석자 1,2</td>
+</tr>
+<tr>
+<td style="text-align: right;">51:00–종료</td>
+<td style="text-align: left;">녹화·편집·잡담</td>
+<td style="text-align: left;">참석자 전원</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>Key Takeaways (실행 가능 요점)</h1>
+<ul>
+<li>관측된 연간 K(예: 3)은 이항모형(Binomial(52, p))으로 자연스럽게 모델링 가능 → MLE: (\hat p = K/52), (\hat s = \hat p T)로 점포 판매량 추정 가능.</li>
+<li>베이지안 접근(Beta prior + Binomial likelihood)이 소규모 관측에서 안정적인 추정과 사후불확실성 표현에 유리.</li>
+<li>다수 점포를 관찰하면 '우연히 높은 K'가 발생할 가능성이 커짐 → 다중비교 보정 또는 계층모형 필요.</li>
+<li>실제로 '명당'을 입증하려면 점포별 판매량(s_i) 데이터가 핵심. 판매량이 없으면 지표(지하철 거리, 유동인구, 소득 등)로 보완.</li>
+<li>사후확률을 사전확률처럼 해석하는 오류(관찰된 사건을 근거로 모든 것을 판단)는 통계적 함정 → 베이지안 보정·시뮬레이션으로 보완.</li>
+<li>권장 분석 워크플로: 데이터 수집(T, s_i, K_i) → 기본 이항/포아송 검정 → 다중비교 고려/계층모형 → 피처 회귀·패널 분석 → 사후 검증(시뮬레이션, 예측성능).</li>
+</ul>
+<hr />
+<h1>짧은 결론 (한 문장)</h1>
+<p>관찰된 '명당' 현상은 판매량 불균형으로 설명될 수 있으며, 이를 판단하려면 연간 총표수·점포별 판매량·관측기간을 바탕으로 이항/베이지안/계층모형과 다중비교 보정을 통해 정량적으로 검증해야 함.</p>
+<hr />
+<h1>개선 필요 지점(간단한 제언)</h1>
+<ul>
+<li>부족한 데이터: 전국 연간 총 판매량 T, 점포별 연간 판매량 s_i 확보 필요. (현재 녹취에는 구체 수치 부족)</li>
+<li>시간범위: 1년(52주)만 보는 것보다 수년치 누적 관찰로 추정 신뢰도 향상 권장.</li>
+<li>다중비교/탐색편향을 고려한 통계검정 명시 부족 → 실무에서는 FDR 또는 시뮬레이션 기반 p값 보정 필요.</li>
+<li>인과성·행동요인: 명당으로 인지도 자체가 매출을 증가시킬 수 있음(자기강화) → 인과관계 분리를 위한 패널/처치모형(예: 차분-in-차분) 검토 권장.</li>
+<li>모델 명확화: 베이지안 사전 설정(a,b)에 대한 논의(무정보·약한 정보 등) 및 민감도 분석 필요.</li>
+</ul>
+<hr />
+<hr />
+<h1>Insights (추가적 수학·통계 지식 및 권장 방법)</h1>
+<p>아래는 원 대화의 모델링 아이디어를 보다 엄밀하게 적용·확장할 때 유용한 기법·공식·권장 절차.</p>
+<h2>1) 베이지안과 빈도주의의 실무적 사용</h2>
+<ul>
+<li>베이지안 방법 추천 이유:</li>
+<li>소표본(52회의 관측, k 소수)에서 불확실성(사후분포)을 바로 제공.</li>
+<li>다수 점포의 계층구조(hierarchical Beta-Binomial)로 개별 점포의 p_i를 ‘풀(share)하는 정보’로 안정화 가능.</li>
+<li>계층모형 예:<br />
+  [<br />
+  p_i \sim \mathrm{Beta}(\alpha,\beta),\quad K_i \mid p_i \sim \mathrm{Binomial}(52,p_i)<br />
+  ]<br />
+  [<br />
+  \alpha,\beta \text{에 대한 사전을 두고 MCMC로 추정}<br />
+  ]<br />
+  → 표본이 적은 점포는 모집단 평균으로 풀(regularize)됨</li>
+</ul>
+<h2>2) 이항-베타 접합의 계산적 이점</h2>
+<ul>
+<li>균등사전 Beta(1,1)의 경우 posterior mean:<br />
+  [<br />
+  E[p_i|K_i] = \frac{1 + K_i}{2 + 52}<br />
+  ]<br />
+  → MLE(=K/52)보다 더 보수적(평활화)인 추정</li>
+</ul>
+<h2>3) 다중비교·탐색 편향(Multiple testing &amp; selection)</h2>
+<ul>
+<li>문제: N개의 점포 중 최고 K_max를 선택하면, K_max의 유의성은 단순 단일검정 p-value보다 훨씬 과장됨</li>
+<li>권장: 무작위화 시뮬레이션(bootstrap/Monte Carlo)으로 null 분포에서 최대값 분포를 추정하고 그에 대한 p-value 산출</li>
+<li>또는 FDR(예: Benjamini–Hochberg) 적용</li>
+</ul>
+<h2>4) 포아송 근사 및 포아송 회귀</h2>
+<ul>
+<li>K_i ∼ Binomial(52, p_i)에서 p_i 작고 n(=52) 고정이라면 K_i는 포아송으로 근사 가능: (K_i \approx \text{Poisson}(\lambda_i = 52 p_i))</li>
+<li>포아송 회귀(예: log λ_i = X_i β)로 지리·사회적 피처를 포함한 설명모형 구축 가능</li>
+</ul>
+<h2>5) 시뮬레이션 예시(실무)</h2>
+<ul>
+<li>목표: 관측된 k=3이 우연인지 아닌지 검정</li>
+<li>절차:</li>
+<li>가정: 전체 점포 수 M, 전체 표수 T, 점포별 판매비율 분포(예: Dirichlet 또는 단일 기댓값 p_0)</li>
+<li>반복 시뮬: 각 회차(52)마다 하나의 당첨점포를 모집단에서 p에 따라 무작위 선택, 1년치 K_i 계산</li>
+<li>각 반복에서 K_i 분포 및 K_max 분포 기록 → 관찰된 값과 비교하여 empirical p-value 산출</li>
+<li>장점: 모델 가정의 유연성(판매량 분포, 지역별 차이 등) 반영 가능</li>
+</ul>
+<h2>6) 신뢰구간(권장 방법)</h2>
+<ul>
+<li>작은 표본·p 근처 0 또는 1인 경우 Wilson interval 또는 exact Clopper-Pearson 권장</li>
+<li>Wilson CI(근사): 더 안정적이며 MLE 근사보다 성능 우수</li>
+</ul>
+<h2>7) 귀무가설 설정 예시</h2>
+<ul>
+<li>두 가지 실무적 H0:<br />
+  A. 동등판매 가정: (H_0: p_i = 1/M) (M: 총 점포 수)<br />
+  B. 모집단 평균 비율: (H_0: p_i = p_0) (p_0: 전체 판매 분포에서 기대되는 비율)</li>
+<li>선택은 가용 데이터(점포별 판매자료 유무)에 따라 달라짐</li>
+</ul>
+<h2>8) 권장 소프트웨어/절차</h2>
+<ul>
+<li>자료 전처리: R 또는 Python(pandas)으로 점포·연도 데이터 정리</li>
+<li>통계분석: R의 binom, logistf, lme4; Python의 statsmodels, pymc3/4(베이지안 MCMC)</li>
+<li>시뮬레이션: Python (numpy, scipy) 또는 R</li>
+</ul>
+<h2>9) 추가적 고려사항(현실적)</h2>
+<ul>
+<li>표 분배의 계절성(특정 시즌 판매 급증) 고려</li>
+<li>당첨 표의 분배가 완전 랜덤인지(구매 방식—수동/자동, 번호패턴 선호 등으로 편향 가능)</li>
+<li>‘명당’이라는 인식이 판매량을 증가시키는 자기강화(self-reinforcing) 효과(즉, 인지→구매 증가→당첨 증가)를 인과적으로 식별하려면 패널·도입효과 분석 필요</li>
+</ul>
+<hr />
+<h1>권장 작업 목록(우선순위)</h1>
+<ol>
+<li>연간 총표수 T 확보(필수)  </li>
+<li>해당 점포의 연도별 판매량 s_i 확보(가능하면 POS 데이터)  </li>
+<li>관측기간 확장(수년치) → 데이터 안정화  </li>
+<li>기본 이항/베이지안 분석 수행(신뢰구간·사후확률)  </li>
+<li>다중비교 보정 또는 계층모형 적용  </li>
+<li>설명변수 수집(지하철 거리, 유동인구, 소득 등) → 회귀/패널 분석  </li>
+<li>시뮬레이션으로 우연성 검정 및 예측성 검증</li>
+</ol>
+<hr />
+<p>끝.</p>
+    </div>
+</body>
+</html>
