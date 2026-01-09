@@ -44,3 +44,4 @@ pipeline_log.txt
 # 기타 임시 파일
 *.tmp
 *.bak
+.env
