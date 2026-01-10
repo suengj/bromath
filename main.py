@@ -74,11 +74,14 @@ def main():
         hf_home_path=hf_home_path
     )
     
+    extract_srt = Config.EXTRACT_SRT
+    
     transcribed_texts = transcriber.transcribe_all(
         audio_files=extracted_audio_files,
         output_folder=text_output_folder,
         language="ko",  # 한국어로 설정 (자동 감지하려면 None)
-        skip_existing=True  # 이미 전사된 파일 건너뛰기
+        skip_existing=True,  # 이미 전사된 파일 건너뛰기
+        extract_srt=extract_srt
     )
     
     print(f"\n총 {len(transcribed_texts)}개의 파일 전사 완료")

@@ -103,7 +103,8 @@ class STTTranscriber:
         audio_path: Path,
         output_folder: Optional[Path] = None,
         output_filename: Optional[str] = None,
-        language: Optional[str] = None
+        language: Optional[str] = None,
+        extract_srt: bool = False
     ) -> str:
         """
         오디오 파일을 텍스트로 전사합니다.
@@ -113,6 +114,7 @@ class STTTranscriber:
             output_folder: 텍스트 파일 저장 폴더 (None이면 저장 안 함)
             output_filename: 출력 파일명 (None이면 자동 생성)
             language: 언어 코드 (예: "ko", "en"). None이면 자동 감지
+            extract_srt: True이면 SRT 자막 파일도 생성
             
         Returns:
             전사된 텍스트
@@ -129,13 +131,22 @@ class STTTranscriber:
                 # MLX Whisper는 자체적으로 진행률을 표시하므로
                 # verbose=False로 설정하여 출력 최소화 (tqdm과 충돌 방지)
                 try:
+                    # SRT 추출이 필요한 경우 segments 정보도 가져오기
                     result = mlx_whisper.transcribe(
                         str(audio_path),
-                        word_timestamps=False,
+                        word_timestamps=extract_srt,  # SRT 추출 시 True
                         path_or_hf_repo=self.model,
                         verbose=False  # False로 설정하여 MLX의 자체 진행률 표시 최소화
                     )
                     text = result["text"].strip()
+                    
+                    # SRT 파일 저장
+                    if extract_srt and output_folder and "segments" in result:
+                        self._save_srt_file(
+                            result=result,
+                            output_folder=output_folder,
+                            audio_path=audio_path
+                        )
                     
                 except Exception as mlx_error:
                     raise RuntimeError(f"MLX Whisper 전사 중 오류: {mlx_error}")
@@ -144,14 +155,26 @@ class STTTranscriber:
                 if language:
                     result = self.model.transcribe(
                         str(audio_path),
-                        language=language
+                        language=language,
+                        word_timestamps=extract_srt
                     )
                 else:
-                    result = self.model.transcribe(str(audio_path))
+                    result = self.model.transcribe(
+                        str(audio_path),
+                        word_timestamps=extract_srt
+                    )
                 
                 text = result["text"].strip()
+                
+                # SRT 파일 저장
+                if extract_srt and output_folder and "segments" in result:
+                    self._save_srt_file(
+                        result=result,
+                        output_folder=output_folder,
+                        audio_path=audio_path
+                    )
             
-            # 텍스트 파일로 저장
+            # 텍스트 파일로 저장 (이미 존재하는 경우 건너뛰기)
             if output_folder:
                 output_folder.mkdir(parents=True, exist_ok=True)
                 
@@ -160,20 +183,73 @@ class STTTranscriber:
                 
                 output_path = output_folder / output_filename
                 
-                with open(output_path, "w", encoding="utf-8") as f:
-                    f.write(text)
+                # txt 파일이 없을 때만 저장 (SRT만 생성하는 경우를 위해)
+                if not output_path.exists():
+                    with open(output_path, "w", encoding="utf-8") as f:
+                        f.write(text)
             
             return text
             
         except Exception as e:
             raise RuntimeError(f"전사 실패 ({audio_path.name}): {e}")
     
+    def _save_srt_file(
+        self,
+        result: dict,
+        output_folder: Path,
+        audio_path: Path
+    ):
+        """
+        SRT 자막 파일을 저장합니다.
+        
+        Args:
+            result: Whisper 전사 결과 (segments 포함)
+            output_folder: 출력 폴더
+            audio_path: 원본 오디오 파일 경로
+        """
+        if "segments" not in result or not result["segments"]:
+            print(f"경고: 세그먼트 정보가 없어 SRT 파일을 생성할 수 없습니다.")
+            return
+        
+        srt_filename = audio_path.stem + "_SRT.srt"
+        srt_path = output_folder / srt_filename
+        
+        with open(srt_path, "w", encoding="utf-8") as f:
+            for idx, segment in enumerate(result["segments"], 1):
+                start_time = self._format_timestamp(segment["start"])
+                end_time = self._format_timestamp(segment["end"])
+                text = segment["text"].strip()
+                
+                f.write(f"{idx}\n")
+                f.write(f"{start_time} --> {end_time}\n")
+                f.write(f"{text}\n\n")
+        
+        print(f"SRT 파일 저장: {srt_path}")
+    
+    def _format_timestamp(self, seconds: float) -> str:
+        """
+        초 단위 시간을 SRT 형식 (HH:MM:SS,mmm)으로 변환합니다.
+        
+        Args:
+            seconds: 초 단위 시간
+            
+        Returns:
+            SRT 형식 타임스탬프 문자열
+        """
+        hours = int(seconds // 3600)
+        minutes = int((seconds % 3600) // 60)
+        secs = int(seconds % 60)
+        millis = int((seconds % 1) * 1000)
+        
+        return f"{hours:02d}:{minutes:02d}:{secs:02d},{millis:03d}"
+    
     def transcribe_all(
         self,
         audio_files: List[Path],
         output_folder: Path,
         language: Optional[str] = None,
-        skip_existing: bool = True
+        skip_existing: bool = True,
+        extract_srt: bool = False
     ) -> List[str]:
         """
         여러 오디오 파일을 일괄 전사합니다.
@@ -233,7 +309,8 @@ class STTTranscriber:
                 text = self.transcribe_audio(
                     audio_file,
                     output_folder,
-                    language=language
+                    language=language,
+                    extract_srt=extract_srt
                 )
                 
                 elapsed_time = time_module.time() - start_time

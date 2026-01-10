@@ -280,7 +280,8 @@ Please use the provided transcription file as {json_query}.
         original_filename: str,
         date_prefix: Optional[str] = None,
         save_html: bool = False,
-        html_template: Optional[str] = None
+        html_template: Optional[str] = None,
+        output_filename_suffix: str = ""
     ) -> Tuple[Path, Optional[Path]]:
         """
         구조화된 텍스트를 마크다운 파일로 저장하고, 필요시 HTML 파일도 저장합니다.
@@ -292,6 +293,7 @@ Please use the provided transcription file as {json_query}.
             date_prefix: 날짜 접두사 (None이면 자동 생성)
             save_html: True이면 HTML 파일도 저장
             html_template: HTML 템플릿 (None이면 기본 템플릿 사용)
+            output_filename_suffix: 출력 파일명에 추가할 접미사 (예: "_srt")
             
         Returns:
             (마크다운 파일 경로, HTML 파일 경로 또는 None)
@@ -302,9 +304,18 @@ Please use the provided transcription file as {json_query}.
         if date_prefix is None:
             date_prefix = datetime.now().strftime("%Y-%m-%d_%H%M%S")
         
-        # 파일명 생성 (.txt -> .md)
+        # 파일명 생성 (.txt -> .md 또는 .srt -> .md)
         base_name = Path(original_filename).stem
-        md_filename = f"{date_prefix}_{base_name}.md"
+        
+        # SRT 파일의 경우 _SRT 제거
+        if base_name.endswith('_SRT'):
+            base_name = base_name[:-4]  # _SRT 제거
+        
+        # 접미사 추가
+        if output_filename_suffix:
+            md_filename = f"{date_prefix}_{base_name}{output_filename_suffix}.md"
+        else:
+            md_filename = f"{date_prefix}_{base_name}.md"
         md_path = output_folder / md_filename
         
         # 마크다운 파일 저장
@@ -483,7 +494,8 @@ Please use the provided transcription file as {json_query}.
         language: str = "Korean",
         style: str = "Markdown",
         save_html: bool = False,
-        html_template: Optional[str] = None
+        html_template: Optional[str] = None,
+        output_filename_suffix: str = ""
     ) -> Optional[Tuple[Path, Optional[Path]]]:
         """
         단일 텍스트 파일을 처리합니다.
@@ -500,6 +512,7 @@ Please use the provided transcription file as {json_query}.
             token_range: 토큰 범위
             language: 출력 언어
             style: 출력 형식
+            output_filename_suffix: 출력 파일명에 추가할 접미사 (예: "_srt")
             
         Returns:
             저장된 마크다운 파일 경로 (실패 시 None)
@@ -533,7 +546,8 @@ Please use the provided transcription file as {json_query}.
                 output_folder=output_folder,
                 original_filename=text_file.name,
                 save_html=save_html,
-                html_template=html_template
+                html_template=html_template,
+                output_filename_suffix=output_filename_suffix
             )
             
             return (md_path, html_path)

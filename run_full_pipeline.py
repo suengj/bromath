@@ -186,6 +186,7 @@ def process_audio_files(logger: PipelineLogger):
     whisper_model_path = Config.WHISPER_MODEL_PATH
     whisper_model_name = Config.WHISPER_MODEL_NAME
     mlx_model_name = Config.MLX_MODEL_NAME
+    extract_srt = Config.EXTRACT_SRT
     
     # STT Transcriber 초기화
     transcriber = STTTranscriber(
@@ -207,15 +208,47 @@ def process_audio_files(logger: PipelineLogger):
     for wav_file in wav_files:
         logger.mark_complete(wav_file.name, 'extracted_audio')
     
-    # 이미 전사된 파일 필터링
+    # 이미 전사된 파일 필터링 및 SRT 파일 확인
     files_to_transcribe = []
+    files_to_generate_srt = []  # txt는 있지만 SRT가 없는 파일들
+    
     for wav_file in wav_files:
         expected_txt = text_folder / f"{wav_file.stem}.txt"
+        expected_srt = text_folder / f"{wav_file.stem}_SRT.srt"
+        
         if expected_txt.exists():
-            print(f"건너뛰기 (이미 전사됨): {wav_file.name}")
+            # txt 파일은 있지만 SRT 파일이 없고 extract_srt가 True인 경우
+            if extract_srt and not expected_srt.exists():
+                files_to_generate_srt.append(wav_file)
+                print(f"SRT 생성 필요: {wav_file.name} (txt는 있지만 SRT 없음)")
+            else:
+                print(f"건너뛰기 (이미 전사됨): {wav_file.name}")
             logger.mark_complete(wav_file.name, 'transcribed')
         else:
             files_to_transcribe.append(wav_file)
+    
+    # SRT 파일만 생성이 필요한 경우 처리
+    if files_to_generate_srt:
+        print(f"\nSRT 파일 생성: {len(files_to_generate_srt)}개 파일")
+        print("-" * 60)
+        for wav_file in files_to_generate_srt:
+            try:
+                print(f"SRT 생성 중: {wav_file.name}")
+                transcriber.transcribe_audio(
+                    audio_path=wav_file,
+                    output_folder=text_folder,
+                    language="ko",
+                    extract_srt=True  # SRT 파일만 생성 (txt는 이미 있음)
+                )
+                expected_srt = text_folder / f"{wav_file.stem}_SRT.srt"
+                if expected_srt.exists():
+                    print(f"✓ SRT 생성 완료: {expected_srt.name}")
+                else:
+                    print(f"✗ 경고: SRT 파일이 생성되지 않았습니다: {wav_file.name}")
+            except Exception as e:
+                print(f"✗ SRT 생성 실패 ({wav_file.name}): {e}")
+                continue
+        print()
     
     if files_to_transcribe:
         # transcribe_all 내부에서 메시지를 출력하므로 여기서는 출력하지 않음
@@ -223,7 +256,8 @@ def process_audio_files(logger: PipelineLogger):
             audio_files=files_to_transcribe,
             output_folder=text_folder,
             language="ko",
-            skip_existing=False  # 이미 필터링했으므로
+            skip_existing=False,  # 이미 필터링했으므로
+            extract_srt=extract_srt
         )
         
         # 로그 업데이트
@@ -241,8 +275,8 @@ def process_audio_files(logger: PipelineLogger):
     print("\n[2-2] 전사된 텍스트 → structured (.md/.html)")
     print("-" * 60)
     
-    # 전사된 텍스트 파일들을 structured로 변환
-    text_files = list(text_folder.glob("*.txt"))
+    # 전사된 텍스트 파일들을 structured로 변환 (.txt와 .srt 모두)
+    text_files = list(text_folder.glob("*.txt")) + list(text_folder.glob("*_SRT.srt"))
     
     if not text_files:
         print("처리할 텍스트 파일이 없습니다.")
@@ -250,17 +284,36 @@ def process_audio_files(logger: PipelineLogger):
     
     # 이미 처리된 파일 필터링
     files_to_structure = []
-    for txt_file in text_files:
-        base_name = txt_file.stem
-        existing_md = list(structured_folder.glob(f"*_{base_name}.md"))
+    for text_file in text_files:
+        base_name = text_file.stem
+        
+        # SRT 파일인 경우 _SRT를 제거하고 _srt를 추가한 파일명으로 확인
+        if text_file.suffix == '.srt':
+            # _SRT.srt -> base_name에서 _SRT 제거 -> _srt 추가
+            if base_name.endswith('_SRT'):
+                base_name_for_check = base_name[:-4]  # _SRT 제거
+                existing_md = list(structured_folder.glob(f"*_{base_name_for_check}_srt.md"))
+            else:
+                existing_md = list(structured_folder.glob(f"*_{base_name}_srt.md"))
+        else:
+            # .txt 파일인 경우 기존 로직
+            existing_md = list(structured_folder.glob(f"*_{base_name}.md"))
         
         if existing_md:
-            print(f"건너뛰기 (이미 처리됨): {txt_file.name}")
-            # wav 파일명으로 로그 기록 (txt 파일명에서 .txt 제거하면 wav 파일명)
-            wav_filename = base_name + ".wav"
+            print(f"건너뛰기 (이미 처리됨): {text_file.name}")
+            # wav 파일명으로 로그 기록
+            if text_file.suffix == '.srt':
+                # _SRT.srt -> wav 파일명 추출
+                if base_name.endswith('_SRT'):
+                    wav_base = base_name[:-4]
+                else:
+                    wav_base = base_name.replace('_srt', '')
+                wav_filename = wav_base + ".wav"
+            else:
+                wav_filename = base_name + ".wav"
             logger.mark_complete(wav_filename, 'structured')
         else:
-            files_to_structure.append(txt_file)
+            files_to_structure.append(text_file)
     
     if not files_to_structure:
         print("모든 파일이 이미 구조화되었습니다.")
@@ -298,11 +351,25 @@ def process_audio_files(logger: PipelineLogger):
     html_template = Config.HTML_TEMPLATE
     
     processed_count = 0
-    for txt_file in files_to_structure:
+    for text_file in files_to_structure:
         try:
+            # SRT 파일인 경우 파일명에 _srt 접미사 추가
+            is_srt = text_file.suffix == '.srt'
+            if is_srt:
+                # 원본 파일명에서 _SRT 제거 후 _srt 추가
+                base_name = text_file.stem
+                if base_name.endswith('_SRT'):
+                    original_name = base_name[:-4]  # _SRT 제거
+                else:
+                    original_name = base_name.replace('_srt', '')
+                output_filename_suffix = '_srt'
+            else:
+                original_name = text_file.stem
+                output_filename_suffix = ''
+            
             # process_single_file 내부에서 메시지 출력하므로 여기서는 출력하지 않음
             result = processor.process_single_file(
-                text_file=txt_file,
+                text_file=text_file,
                 output_folder=structured_folder,
                 context_query=context_query,
                 main_query=main_query,
@@ -314,21 +381,22 @@ def process_audio_files(logger: PipelineLogger):
                 language=language,
                 style=style,
                 save_html=save_html,
-                html_template=html_template
+                html_template=html_template,
+                output_filename_suffix=output_filename_suffix if is_srt else ''
             )
             
             if result:
                 # wav 파일명으로 로그 기록
-                wav_filename = txt_file.stem + ".wav"
+                wav_filename = original_name + ".wav"
                 logger.mark_complete(wav_filename, 'structured')
                 processed_count += 1
                 logger.save()  # 중간 저장
-                print(f"✓ 완료: {txt_file.name}\n")
+                print(f"✓ 완료: {text_file.name}\n")
             else:
-                print(f"✗ 실패: {txt_file.name}\n")
+                print(f"✗ 실패: {text_file.name}\n")
                 
         except Exception as e:
-            print(f"✗ 오류 ({txt_file.name}): {e}\n")
+            print(f"✗ 오류 ({text_file.name}): {e}\n")
             continue
     
     print(f"\n[2-2 완료] {processed_count}개 파일 처리")

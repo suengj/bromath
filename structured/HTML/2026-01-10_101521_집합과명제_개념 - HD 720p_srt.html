@@ -1,0 +1,421 @@
+﻿
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-01-10_101521_집합과명제_개념 - HD 720p_srt</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\(', '\)']],
+                displayMath: [['$$', '$$'], ['\[', '\]']]
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #333;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #81C784;
+            padding-bottom: 8px;
+            margin-top: 2em;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 2em 0;
+        }
+        ul, ol {
+            margin: 1em 0;
+            padding-left: 2em;
+        }
+        blockquote {
+            border-left: 4px solid #4CAF50;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>집합·명제·부등식 정리 (강의 전사 재구성)</h1>
+<p>목표: 핵심 개념과 세부 설명(예시/주의점)을 분리해 빠르게 훑고, 문제 해결에 바로 적용 가능한 요점·통찰 제공.</p>
+<p>목차<br />
+- 핵심 개념 요약 (Definitions &amp; Identities)<br />
+- 세부 설명 · 예시 · 자주 나오는 실전 유의점<br />
+- 문제해결 기법(증명 전략)<br />
+- 집합 연산 · 벤 다이어그램 해석법<br />
+- 조합·부분집합 관련 계산 요령<br />
+- 반복되는 주제·패턴 분석<br />
+- Key Takeaways (실전 적용형)</p>
+<hr />
+<h2>1. 핵심 개념 (Core concepts)</h2>
+<p>(간단 정의 → 주요 식/정리 → 사용 조건)</p>
+<ol>
+<li>명제와 조건</li>
+<li>명제: 참/거짓이 확정되는 문장.  </li>
+<li>조건(가정): 변수에 따라 참·거짓이 달라지는 식(예: “x는 짝수이다”).  </li>
+<li>
+<p>표기: 소문자 p,q (조건/명제). 부정: $\lnot p$.</p>
+</li>
+<li>
+<p>진리집합 (truth set)</p>
+</li>
+<li>정의: 조건 $p$를 참으로 만드는 전체집합 내의 원소들의 집합. 표기: $P$.</li>
+<li>
+<p>예: 전체집합 ${1,\dots,10}$, 조건 “짝수” → $P={2,4,6,8,10}$.</p>
+</li>
+<li>
+<p>논리 연산과 집합 대응</p>
+</li>
+<li>논리 OR($p\lor q$) ↔ 집합 합집합: $P\cup Q$  </li>
+<li>논리 AND($p\land q$) ↔ 집합 교집합: $P\cap Q$  </li>
+<li>
+<p>부정 $\lnot p$ ↔ 여집합: $P^{c}$</p>
+</li>
+<li>
+<p>드모르간 법칙 (De Morgan)</p>
+</li>
+<li>$(P\cup Q)^{c}=P^{c}\cap Q^{c}$  </li>
+<li>$(P\cap Q)^{c}=P^{c}\cup Q^{c}$  </li>
+<li>
+<p>일반화: 임의의 집합족에 대해 성립.</p>
+</li>
+<li>
+<p>포함관계와 명제(함의)</p>
+</li>
+<li>$p\Rightarrow q$ (P이면 Q이다) 참 ⇔ 진리집합 포함: $P\subseteq Q$.</li>
+<li>대우(contrapositive): $p\Rightarrow q$ 는 $\lnot q\Rightarrow\lnot p$ 와 동치.</li>
+<li>역(converse): $q\Rightarrow p$ (동치 아님, 별도 판정 필요).</li>
+<li>필요조건·충분조건:</li>
+<li>$p$는 $q$의 충분조건: $p\Rightarrow q$.</li>
+<li>
+<p>$q$는 $p$의 필요조건: $p\Rightarrow q$.</p>
+</li>
+<li>
+<p>양화사 (Quantifiers)</p>
+</li>
+<li>존재: “어떤(∃)” = 적어도 하나 존재 (existential)  </li>
+<li>전체: “모든(∀)” = 모든 원소에 성립 (universal)  </li>
+<li>
+<p>부정 관계: $\neg(\forall x\, P(x))\equiv \exists x\, \neg P(x)$, $\neg(\exists x\, P(x))\equiv \forall x\,\neg P(x)$.</p>
+</li>
+<li>
+<p>부등식 기본</p>
+</li>
+<li>$a&gt;b \iff a-b&gt;0$; 비교는 차(差)의 부호로 판단.</li>
+<li>덧셈: $a&gt;b \Rightarrow a+c&gt;b+c$ (모든 실수 $c$).</li>
+<li>곱셈: $a&gt;b \Rightarrow ac&gt;bc$ if $c&gt;0$; 방향 반전 if $c&lt;0$.</li>
+<li>
+<p>0인 케이스 주의(특히 나눗셈·역수 관련 주장).</p>
+</li>
+<li>
+<p>제곱·절댓값 성질 (절대부등식)</p>
+</li>
+<li>$x^{2}\ge0$ for all $x\in\mathbb{R}$. (완전제곱)</li>
+<li>$|x|=0 \iff x=0$. $x^{2}=0\iff x=0$.</li>
+<li>$x^{2}+y^{2}=0 \iff x=y=0$.</li>
+<li>삼각부등식: $|a+b|\le|a|+|b|$ (등호 조건: 같은 부호).</li>
+<li>
+<p>$|a+b|=|a|+|b| \iff ab\ge0$ (보다 정확히는 $a$와 $b$의 부호가 같을 때).</p>
+</li>
+<li>
+<p>이차식 판별식과 항상 양수/음수 판단</p>
+</li>
+<li>$f(x)=ax^{2}+bx+c$ (a&gt;0):</li>
+<li>판별식 $\Delta=b^{2}-4ac$.</li>
+<li>$\Delta&lt;0 \Rightarrow$ 실수에서 항상 $&gt;0$ (또는 항상 $&lt;0$ depending on $a$).</li>
+<li>
+<p>예: $x^{2}+x+1$ 는 $\Delta=1-4=-3&lt;0 \Rightarrow$ 모든 실수에서 양수.</p>
+</li>
+<li>
+<p>산술·기하 평균 (AM-GM)</p>
+</li>
+<li>
+<p>$ \dfrac{a+b}{2}\ge\sqrt{ab}$ (양수 $a,b$). 등호 조건: $a=b$.</p>
+</li>
+<li>
+<p>코시-슈warz (Cauchy–Schwarz)</p>
+</li>
+<li>$(a^{2}+b^{2})(x^{2}+y^{2})\ge (ax+by)^{2}$; 등호 조건: 벡터가 상수배 관계.</li>
+<li>
+<p>일반화: n차원 및 내적공간.</p>
+</li>
+<li>
+<p>포함-여집합·차집합</p>
+</li>
+<li>집합 차: $X\setminus Y = X\cap Y^{c}$.</li>
+<li>부분집합: $C\subseteq B \iff C\setminus B=\varnothing$.</li>
+<li>
+<p>집합 등호: $A=B \iff A\subseteq B$ 및 $B\subseteq A$.</p>
+</li>
+<li>
+<p>부분집합 개수 및 조합</p>
+</li>
+<li>집합 $|A|=n$ 이면 부분집합 수 $2^{n}$.</li>
+<li>원소 수가 $k$인 부분집합 수: $\binom{n}{k}$.</li>
+<li>
+<p>순서를 고려한 경우: 순열 $P(n,k)=n(n-1)\cdots(n-k+1)=\dfrac{n!}{(n-k)!}$; 집합(순서 무시)일 때는 나눗셈(중복 고려) 필요(예: $\dfrac{n(n-1)}{2}$).</p>
+</li>
+<li>
+<p>포함배제법 (Inclusion–Exclusion)</p>
+</li>
+<li>두 집합: $|A\cup B|=|A|+|B|-|A\cap B|$.</li>
+<li>세 집합: $|A\cup B\cup C|=\sum|A|-\sum|A\cap B|+|A\cap B\cap C|$.</li>
+</ol>
+<hr />
+<h2>2. 세부 설명·예시·실전 유의점 (Details &amp; Examples)</h2>
+<p>표: 개념 → 핵심 식/관찰 → 실전 유의점</p>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th style="text-align: right;">핵심 식/관찰</th>
+<th>실전 유의점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>논리 부정</td>
+<td style="text-align: right;">$\lnot(p\lor q)\equiv\lnot p\land\lnot q$</td>
+<td>문장 부정 시 “또는”→“그리고”로 바뀜; 집합에선 합집합의 여집합 = 각 여집합의 교집합</td>
+</tr>
+<tr>
+<td>역·대우·부정</td>
+<td style="text-align: right;">역: $q\Rightarrow p$; 대우: $\lnot q\Rightarrow\lnot p$ (동치)</td>
+<td>대우로 증명하면 종종 더 쉬움. 역은 동치 아님</td>
+</tr>
+<tr>
+<td>곱셈 시 부호</td>
+<td style="text-align: right;">$a&gt;b$ 에 $c$ 곱할 때 $c&gt;0$이면 방향 유지, $c&lt;0$이면 방향 반전</td>
+<td>$c=0$인 경우 주의. 시험문제에서 함정으로 자주 출제</td>
+</tr>
+<tr>
+<td>나눗셈(분모)</td>
+<td style="text-align: right;">$b\neq0$ 조건 항상 명시</td>
+<td>분모가 0이면 식 자체가 정의되지 않음 (내신에서 꼼수 문제)</td>
+</tr>
+<tr>
+<td>제곱 비교</td>
+<td style="text-align: right;">양수 영역에서 $a&gt;b \iff a^{2}&gt;b^{2}$ (단, 부호 고려)</td>
+<td>음수 영역은 순서 뒤바뀜 → 그래프(예: $y=x^{2}$)로 직관 확인</td>
+</tr>
+<tr>
+<td>삼각부등식</td>
+<td style="text-align: right;">$</td>
+<td>a+b</td>
+</tr>
+<tr>
+<td>완전제곱 비음수</td>
+<td style="text-align: right;">$(a\pm b)^{2}\ge0$ → 전개로 유용한 부등식 도출</td>
+<td>항등적으로 항상 성립, 등호 조건 파악 중요</td>
+</tr>
+<tr>
+<td>AM-GM 활용</td>
+<td style="text-align: right;">$\dfrac{a+b}{2}\ge\sqrt{ab}$</td>
+<td>최대/최소 문제에서 우선 검토 (가능하면 AM-GM 시도)</td>
+</tr>
+<tr>
+<td>C-S 활용</td>
+<td style="text-align: right;">$(\sum a_{i}^{2})(\sum x_{i}^{2})\ge(\sum a_{i}x_{i})^{2}$</td>
+<td>벡터 관점(내적)으로 이해하면 확장 쉬움</td>
+</tr>
+<tr>
+<td>이차식 항상 양수</td>
+<td style="text-align: right;">$\Delta&lt;0$이면 $ax^{2}+bx+c$ 는 $a&gt;0$ 일때 항상 $&gt;0$</td>
+<td>판별식 계산과 등호 발생 여부(최솟값 위치) 확인</td>
+</tr>
+<tr>
+<td>논리적 포함</td>
+<td style="text-align: right;">$p\Rightarrow q$ ⇔ $P\subseteq Q$</td>
+<td>집합 그림(벤)으로 직관화 후 증명(부분집합 포함관계로 전환)</td>
+</tr>
+<tr>
+<td>부분집합 수</td>
+<td style="text-align: right;">$2^{n}$ (총) / $\binom{n}{k}$ (크기 k)</td>
+<td>조건부(특정 원소 포함/미포함) 문제는 선택지 수 곱셈으로 처리</td>
+</tr>
+</tbody>
+</table>
+<p>몇 가지 구체 예시·주의:<br />
+- 분수 부등식: $\dfrac{A}{B}&gt;1 \Rightarrow A&gt;B$ 라고 쓸 때 반드시 $B&gt;0$ 가정 필요. (시험 함정)<br />
+- $|x|$ 관련: $|x|=0\iff x=0$, $|x|+|y|=0\iff x=y=0$ — 등호의 필요충분 조건 활용 자주 등장.<br />
+- 판별식 예: $x^{2}+x+1$ 은 모든 실수에서 양수 → 부등식에서 하한값 활용.<br />
+- 절댓값 제곱을 이용한 증명: 삼각부등식 증명 시 양변 제곱 가능(모두 비음수 조건).</p>
+<hr />
+<h2>3. 문제 해결 구조 (Problem-solving patterns)</h2>
+<ol>
+<li>명제 증명</li>
+<li>직접증명 (direct): 가정 → 정리까지 연쇄적으로 전개.</li>
+<li>대우증명 (contrapositive): $\lnot q\Rightarrow\lnot p$ 증명 → 원명제 참. (효율적)</li>
+<li>
+<p>귀류법 (reductio ad absurdum): 결론을 부정하여 모순 도출 → 원명제 참. (루트의 무리수 증명 예시: 루트3 무리수 증명)</p>
+</li>
+<li>
+<p>부등식(비교) 문제</p>
+</li>
+<li>가능한 경우 분류: 부호(case) 분석 (특히 변수의 부호가 식에 영향 줄 때).</li>
+<li>0 특이점 체크: 곱셈/나눗셈 과정에서 0이 빠지지 않도록 조건 명시.</li>
+<li>
+<p>등호(=) 성립 조건 추적: 완전 제곱·AM-GM·C-S 등에서 언제 등호가 되는지(동일 성질 확인).</p>
+</li>
+<li>
+<p>집합 문제</p>
+</li>
+<li>그림(벤다이어그램)으로 먼저 시각화.</li>
+<li>표현 방식: “A이고 B이고 C는 아니다” 등으로 원소 조건 기술 → 연산식으로 전환($A\cap B\cap C^{c}$).</li>
+<li>
+<p>포함·차·여집합 전환으로 간단화.</p>
+</li>
+<li>
+<p>조합 문제</p>
+</li>
+<li>자유 선택(각 원소 포함/미포함): 이진(2) 선택 → $2^{n}$.</li>
+<li>“특정 원소 포함” 조건: 해당 원소 고정 후 나머지에 대한 선택 수 계산.</li>
+<li>‘순서 무시’ 문제: 순열로 셈한 뒤 순서 중복만큼 나눔(예: 2자리 부분집합 → $\dfrac{n(n-1)}{2}$).</li>
+</ol>
+<p>요약: 문제 상황 → (조건화→시각화→적용 가능한 정리(AM-GM/C-S/판별식/삼각부등식 등) 선택) → 등호 조건·0 케이스 확인 → 결론</p>
+<hr />
+<h2>4. 증명 예시(짧게)</h2>
+<ul>
+<li>루트3 무리수 귀류법 요약:</li>
+<li>가정: $\sqrt{3}=\dfrac{n}{m}$ (기약분수, $m,n\in\mathbb{N}$).</li>
+<li>제곱: $3m^{2}=n^{2}$ → $n^{2}$ 는 3의 배수 → $n$ 은 3의 배수.</li>
+<li>$n=3k$ 대입: $3m^{2}=9k^{2}\Rightarrow m^{2}=3k^{2}$ → $m$ 도 3의 배수.</li>
+<li>
+<p>$m,n$ 서로소라는 가정과 모순 → 원명제 참.</p>
+</li>
+<li>
+<p>삼각부등식 제곱 증명 아이디어:</p>
+</li>
+<li>양변 제곱(모두 $\ge0$)으로 전환 후 전개하여 비교 → $|a+b|^{2}\le(|a|+|b|)^{2}$ 증명.</li>
+</ul>
+<hr />
+<h2>5. 집합 연산 · 벤 다이어그램 해석 요령</h2>
+<ul>
+<li>합집합(U): “A 또는 B에 속함” → 그림에선 두 원 모두 칠하기.</li>
+<li>교집합(∩): “A와 B에 동시에 속함” → 교차 영역만 칠하기.</li>
+<li>여집합(Compl): 전체 영역에서 해당 집합 부분을 제외.</li>
+<li>차집합 $A\setminus B$: A에서 B에 속하는 부분을 뺀 영역.</li>
+<li>집합 표기 전환 연습:</li>
+<li>$(A\cap B)^{c}=A^{c}\cup B^{c}$ 으로 시각화해서 영역 바꾸기.</li>
+<li>$X\setminus Y = X \cap Y^{c}$ 로 항상 차집합을 교집합+여집합으로 표현 가능.</li>
+<li>복잡한 표시(여러 영역 칠한 문제): 각 색칠 영역을 “A이고(B), C는 아니다” 식으로 문장화 → 수식화 → 간단화.</li>
+</ul>
+<p>실전 팁: 문제에 Venn 그림이 없더라도 머릿속으로 각 영역의 조건(포함/미포함)을 먼저 말로 적어보면 전환 쉬움.</p>
+<hr />
+<h2>6. 조합·부분집합 계산 팁</h2>
+<ul>
+<li>기본: 각 원소는 포함 or 미포함 → 2가지 선택 → 전체 부분집합 $2^{n}$.</li>
+<li>“특정 원소는 반드시 포함/불포함” 이면 해당 자리는 고정(선택지 1), 나머지 원소만 고려.</li>
+<li>크기 k의 부분집합 수: $\binom{n}{k}$ (순서 무시).</li>
+<li>순서 고려 문제: $P(n,k)=\dfrac{n!}{(n-k)!}$, 집합 문제로 돌아갈 땐 나누기 $k!$ 등으로 보정.</li>
+<li>원소 합/곱을 묻는 문제: 각 원소가 나타나는 횟수(또는 지수) 계산 후 합·곱으로 환산.</li>
+</ul>
+<p>예: $A={1,2,3,4,5}$ 에서 원소 수가 3인 부분집합들의 각 원소 합의 총합<br />
+- 각 원소(예: 1)은 3개짜리 부분집합 중에서 몇 번 등장하는가? → $\binom{4}{2}=6$ 번.<br />
+- 전체 합 = $(1+2+3+4+5)\times 6 = 15\times6=90$.</p>
+<hr />
+<h2>7. 반복되는 수학적 주제·패턴 분석 (Recurring themes)</h2>
+<ul>
+<li>보수성(Complementarity): 논리·집합 연산에서의 상보(부정) 구조가 반복. 드모르간이 핵심.</li>
+<li>0 예외성: 곱셈·나눗셈에서 0이 모순 혹은 예외를 만들며 문제 함정으로 출제 빈번.</li>
+<li>완전제곱·비음수성: $(\cdot)^{2}\ge0$가 여러 부등식 도출의 근원.</li>
+<li>등호 조건의 중요성: AM-GM, C-S, 완전제곱 등에서 등호 성립 조건(동일성·비례 관계)이 최적화 문제의 핵심.</li>
+<li>포함관계 ↔ 함의: 집합 포함($\subseteq$)과 논리적 함의($\Rightarrow$)의 1:1 대응으로 많은 명제를 집합 포함 문제로 환원 가능.</li>
+<li>증명 전략의 재사용성: 증명법(대우·귀류·직접)은 다양한 명제에서 동일한 틀로 적용.</li>
+</ul>
+<p>의미: 위 패턴을 의식하면 문제 유형 분류 및 적합한 해법(대우/귀류/AM-GM/C-S 등) 선택이 빨라짐.</p>
+<hr />
+<h2>Key Takeaways (실전 적용형)</h2>
+<ul>
+<li>논리 명제를 집합 포함관계로 전환해 그림(벤)으로 직관 확인 → 증명/부정이 쉬워짐.</li>
+<li>명제의 증명은 먼저 ‘대우(contrapositive)’가 더 쉬운지 검토. 가능하면 대우로 푼다.</li>
+<li>부등식에서 곱셈·나눗셈 시 항상 분모·곱셈 인수의 부호(혹은 0 여부)를 명시. 시험의 함정 포인트.</li>
+<li>AM-GM → 최댓값·최솟값 문제 우선 후보. 등호 조건($a=b$)으로 해의 형태 즉시 판별 가능.</li>
+<li>절댓값 관련문제: 삼각부등식(또는 제곱 전개)으로 전개하면 복잡도가 낮아짐.</li>
+<li>집합 문제는 “문장(예: A이고 B이고 C가 아니다)”으로 각 영역을 정의한 뒤 연산식으로 바꿔라.</li>
+<li>부분집합 수는 각 원소의 포함 여부 선택(2가지) → 조건부(고정 포함/불포함)시 남은 자리만 계산.</li>
+</ul>
+<hr />
+<h2>부족한 부분 / 개선 제안 (간결)</h2>
+<ul>
+<li>강의 전사에선 엄밀한 정의(명제 vs 조건)의 형식적 구분이 약함 → 시작부에 형식적 정의(논리기호·문법) 보강 권장.  </li>
+<li>드모르간·대우의 증명(형식적 논리적 유도)은 직관 중심으로만 설명됨 → 간단한 진리표 보강 권장.  </li>
+<li>코시-슈바르츠의 벡터·내적 관점 설명이 부족 → n차원 일반화(벡터) 예시 추가하면 응용력 향상.  </li>
+<li>무리수 증명 예시는 √3 사용으로 충분하지만, 유한성·기약분수 조건 설명을 더 명확히 표기 권장.  </li>
+<li>부분집합·조합 관련 공식(조합 표기와 순열의 차이)을 식으로 요약한 표 추가 권장.</li>
+</ul>
+<hr />
+<h2>Insights (추가적 유용 지식 · 확장)</h2>
+<ul>
+<li>De Morgan 일반화: 유한 또는 무한 인덱스 집합 ${A_{i}}<em>{i\in I}$ 에 대해<br />
+  $(\bigcup</em>{i\in I} A_{i})^{c}=\bigcap_{i\in I} A_{i}^{c}$, $(\bigcap_{i\in I} A_{i})^{c}=\bigcup_{i\in I} A_{i}^{c}$.</li>
+<li>코시-슈바르츠 일반화: 힐베르트 공간(내적공간)에서 $\langle u,u\rangle\langle v,v\rangle\ge|\langle u,v\rangle|^{2}$ — 벡터·직교성 문제에 직결.</li>
+<li>AM-GM 다항형 확장: 비음수 $a_{1},\dots,a_{n}$에 대해 $\dfrac{\sum a_{i}}{n}\ge(\prod a_{i})^{1/n}$, 등호 $a_{1}=\cdots=a_{n}$.</li>
+<li>포함배제법 일반식(임의 n):<br />
+  $|\cup_{i=1}^{n}A_{i}|=\sum_{k=1}^{n}(-1)^{k+1}\Big(\sum_{1\le i_{1}&lt;\cdots&lt;i_{k}\le n}|A_{i_{1}}\cap\cdots\cap A_{i_{k}}|\Big)$.</li>
+<li>삼각부등식의 벡터·거리 해석: $|x+y|\le|x|+|y|$ 는 거리(유클리드)에서의 성질. 분석기하·벡터 문제에 자주 등장.</li>
+<li>무리수 증명 계승: √p (p는 소수)는 무리수. 위 루트3 증명 구조를 일반 소수에 대해 확장 가능.</li>
+</ul>
+<p>간단 예제(AM-GM 응용):<br />
+- 문제: $x+y=10$ 인 양수 $x,y$ 에 대해 $xy$의 최대값?<br />
+  - AM-GM: $\dfrac{x+y}{2}\ge\sqrt{xy}\Rightarrow \sqrt{xy}\le5\Rightarrow xy\le25$. 등호 $x=y=5$.</p>
+<hr />
+<p>(요약) 전사에는 집합·명제·부등식·절대값·판별식·평균부등식·코시-슈바르츠·증명기법·부분집합·조합 등 핵심 고등수학 기초가 포괄적으로 등장. 핵심은 ‘정확한 조건(특히 0/부호/분모)’을 명시하고, 적절한 정리를 문제 유형에 맞게 우선 적용하는 것. 필요시 각 항목별로 짧은 연습문제와 정리표를 추가 제공 가능.</p>
+    </div>
+</body>
+</html>

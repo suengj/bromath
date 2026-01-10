@@ -1,0 +1,298 @@
+﻿
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-01-10_102718_다항함수와부등식 - HD 720p_srt</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\(', '\)']],
+                displayMath: [['$$', '$$'], ['\[', '\]']]
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #333;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #81C784;
+            padding-bottom: 8px;
+            margin-top: 2em;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 2em 0;
+        }
+        ul, ol {
+            margin: 1em 0;
+            padding-left: 2em;
+        }
+        blockquote {
+            border-left: 4px solid #4CAF50;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>다항함수와 부등식 — 요약 정리 및 재구성</h1>
+<p>목적: 전달된 강의 전사 내용을 핵심 개념과 세부 설명으로 분리해 간결·체계적으로 정리. 실전에 바로 쓸 수 있도록 해법, 그래프 직관, 논리 규칙을 강조.</p>
+<p>중요한 용어: 이차함수(2차), 판별식 $D=b^2-4ac$, 실근/허근, 중근(중복근), 완전제곱꼴, 꼭지점, 축(대칭선), 차수(짝수/홀수), 근의 다중도(중복도, multiplicity), 인수분해.</p>
+<p>목차<br />
+- 핵심 개념 (Core concepts)<br />
+- 상세 설명 및 예시 (Details &amp; Examples)<br />
+  - 이차방정식/부등식<br />
+  - 꼭지점·완전제곱·축<br />
+  - 근의 부호와 그래프 해석<br />
+  - 다차(3차 이상) 다항함수의 일반적 모양<br />
+  - 인수분해형의 부등식 풀이(사인 차트)<br />
+  - 복소근(허근) 관련 성질<br />
+- 표로 정리된 규칙(판별식·중복도)<br />
+- 문제해결 절차(Problem-solving structure)<br />
+- Key Takeaways (실천 가능한 핵심)<br />
+- 개선/보완이 필요한 부분(간결 제안)</p>
+<hr />
+<h2>핵심 개념 (Core concepts)</h2>
+<ul>
+<li>판별식: $D=b^2-4ac$  </li>
+<li>$D&gt;0$ : 서로 다른 두 실근(그래프가 x축과 두 점에서 교점)  </li>
+<li>$D=0$ : 중근(접함) — 한 점에서 접함(중복근)  </li>
+<li>$D&lt;0$ : 실근 없음(붕 떠 있음)</li>
+<li>꼭지점(정점)과 완전제곱꼴:  </li>
+<li>$y=ax^2+bx+c = a\bigl(x-\tfrac{-b}{2a}\bigr)^2 + \bigl(c-\tfrac{b^2}{4a}\bigr)$  </li>
+<li>꼭지점: $\bigl(-\tfrac{b}{2a},\; c-\tfrac{b^2}{4a}\bigr)$</li>
+<li>대칭축(축의 방정식): $x=-\dfrac{b}{2a}$ (근이 존재하면 두 근의 평균과 같다)</li>
+<li>부등식 $ax^2+bx+c \;(\gtrless)\;0$ 해는 근의 유무·위치·계수 $a$ 부호에 따라 결정</li>
+<li>다차함수 (차수 $n$):  </li>
+<li>차수의 홀짝성과 선도계수(sign of leading coefficient)로 무한대에서의 끝 행동(end behavior) 결정  </li>
+<li>인수분해하여 각 선형 인수 $(x-\alpha)$의 다중도(중복도)로 그 근에서의 동작 판단:<ul>
+<li>다중도가 홀수이면 x축을 관통(뚫고 지나감, sign change)</li>
+<li>다중도가 짝수이면 접촉(반사, sign 유지)</li>
+</ul>
+</li>
+<li>부등식 풀이(일반 원칙): 실수선 위에 근(또는 근들)의 위치를 찍고 구간별 부호를 판단 → 필요한 구간을 합집합/교집합으로 기술</li>
+</ul>
+<hr />
+<h2>상세 설명 및 예시 (Details &amp; Examples)</h2>
+<h3>1) 이차방정식과 판별식</h3>
+<ul>
+<li>일반형: $ax^2+bx+c=0$ ($a\neq0$)</li>
+<li>판별식 $D=b^2-4ac$에 따라 근의 종류 판단.</li>
+<li>그래프 관점: $a&gt;0$이면 아래로 볼록(꼭지점이 최소), $a&lt;0$이면 위로 볼록(꼭지점이 최대).</li>
+<li>예시:</li>
+<li>$D&gt;0$ : 두 실근 $\alpha&lt;\beta$ → 그래프가 x축을 두 번 가로짚음.</li>
+<li>$D=0$ : 중근 $\alpha$ → 접함. 방정식의 해는 ${ \alpha }$.</li>
+<li>$D&lt;0$ : 실수 해 없음 → 그래프가 x축과 만나지 않음.</li>
+</ul>
+<p>표: 판별식과 그래프<br />
+| $D$ | 근의 형태 | 그래프 |<br />
+|---:|:---:|:---|<br />
+| $&gt;0$ | 서로 다른 두 실근 | x축과 두 점에서 교차 |<br />
+| $=0$ | 중근(중복근) | 한 점에서 접함 |<br />
+| $&lt;0$ | 실근 없음(허근 존재 가능) | x축과 교차하지 않음 |</p>
+<h3>2) 완전제곱꼴과 꼭지점</h3>
+<ul>
+<li>변형: $y=a(x-p)^2+q$ 로 두면 꼭지점 $(p,q)$.</li>
+<li>완전제곱 도출: $p=-\dfrac{b}{2a}$, $q=c-\dfrac{b^2}{4a}$.</li>
+<li>$a&gt;0$이면 모든 $x$에 대해 $y\ge q$; $a&lt;0$이면 모든 $x$에 대해 $y\le q$.</li>
+<li>실전: 부등식 $ax^2+bx+c\ge0$ → 꼭지점의 $q$ 와 비교: 만약 $q\ge0$이고 $a&gt;0$이면 항상 성립(절대부등식).</li>
+</ul>
+<h3>3) 축의 방정식과 근의 평균</h3>
+<ul>
+<li>근 $\alpha,\beta$가 존재하면 축은 $x=\dfrac{\alpha+\beta}{2}=-\dfrac{b}{2a}$.</li>
+<li>복소근(허근)일 때에도 $\alpha+\beta=-\dfrac{b}{a}$ 는 성립 → 축 좌표는 여전히 실수($\Re(\alpha)+\Re(\beta)$)의 평균.</li>
+</ul>
+<h3>4) 이차부등식 풀이(인수분해 되면)</h3>
+<ul>
+<li>인수분해: $a(x-\alpha)(x-\beta)$</li>
+<li>$a&gt;0$ 이고 부등식 $&gt;0$ 인 경우:</li>
+<li>$x&lt;\alpha$ 또는 $x&gt;\beta$ (즉, $\ (-\infty,\alpha)\cup(\beta,\infty)\ $)</li>
+<li>중근($\alpha=\beta$)이면 $a(x-\alpha)^2&gt;0$ 는 공집합(모든 실수에 대해 $\ge0$ 이지만 $&gt;0$는 공집합).</li>
+<li>$a&gt;0$ 이고 부등식 $&lt;0$ 인 경우:</li>
+<li>$\alpha&lt;x&lt;\beta$ (내부 구간)</li>
+<li>논리적 표현: 곱의 부호가 양수일 때는 두 인자의 부호가 같음(둘 다 양수 또는 둘 다 음수). 음수일 때는 부호가 달라짐.</li>
+</ul>
+<p>방법 요약(부등식):<br />
+1. 근을 구하고 정렬: $\alpha\le\beta$<br />
+2. 각 구간 $\ (-\infty,\alpha),\ {\alpha},\ (\alpha,\beta),\ {\beta},\ (\beta,\infty)\ $ 에서의 부호 판정<br />
+3. 대상 부등식 부호에 맞는 구간을 합집합/교집합으로 표현</p>
+<p>예: $a(x-\alpha)(x-\beta)&gt;0$ 이면 $x&lt;\alpha$ 또는 $x&gt;\beta$.</p>
+<h3>5) 근의 다중도(중복도)와 그래프의 동작</h3>
+<ul>
+<li>다중도 $m$:</li>
+<li>$m$이 홀수: 그래프이 x축을 관통(뚫고 지나감). 부호 변화.</li>
+<li>$m$이 짝수: 접촉하여 반사(점에서 부호 유지).</li>
+<li>예시: $f(x)=a(x-\alpha)^2(x-\beta)$</li>
+<li>근 $\alpha$는 짝수(2) → 접촉(반사)</li>
+<li>근 $\beta$는 1 → 관통</li>
+</ul>
+<p>표: 중복도에 따른 근의 동작<br />
+| 중복도 $m$ | 동작 | 부호변화 |<br />
+|:---:|:---:|:---:|<br />
+| 홀수 | 관통(cross) | 있음 |<br />
+| 짝수 | 접촉(touch) | 없음 |</p>
+<h3>6) 3차 이상 다항함수의 일반적 판단법</h3>
+<ul>
+<li>인수분해가 가능하면 선형 인수의 조합으로 해석:</li>
+<li>$f(x)=a\prod_{i}(x-\alpha_i)^{m_i}$</li>
+<li>끝 행동: 차수 $n$가 짝수이면 양 끝 방향 동일, 홀수이면 반대 방향</li>
+<li>선도계수 $a$의 부호로 상향/하향 결정</li>
+<li>실제 모양을 간단히 그리는 요령:</li>
+<li>근의 위치와 각 근의 중복도를 확인</li>
+<li>왼쪽 끝에서 시작(무한대에서의 부호), 각 근에서 관통/접촉 적용</li>
+<li>필요하면 미적분(도함수)로 극값, 변곡점 위치 더 정확히 파악</li>
+<li>특수 케이스:</li>
+<li>한 실근만 가질 수 있음(나머지 두 허근) → 실근 하나에서 관측되는 꼬임은 그 주변 2차항(완전제곱 형태) 영향</li>
+<li>인수들 중 어떤 것이 제곱(또는 짝수차)인 경우 그 근에서는 반사(접촉)</li>
+</ul>
+<h3>7) 복소근(허근) 관련</h3>
+<ul>
+<li>이차식의 허근은 서로 켤레(complex conjugate) 쌍: $c_1\pm c_2 i$</li>
+<li>합과 곱:  </li>
+<li>$\alpha+\beta=-\dfrac{b}{a}$ (항상 실수)  </li>
+<li>$\alpha\beta=\dfrac{c}{a}$ (항상 실수)  </li>
+<li>허근일 때의 직관적 해석:</li>
+<li>허근이면 그래프가 x축과 만나지 않음. 판별식 $D&lt;0$.</li>
+<li>허근의 실수부 양수·음수는 합의 부호로 판정 가능.</li>
+</ul>
+<hr />
+<h2>표: 자주 쓰는 규칙 요약</h2>
+<p>1) 판별식과 해의 관계<br />
+| 조건 | 해의 개수/형태 | 그래프 특징 |<br />
+|---:|:---:|:---|<br />
+| $D&gt;0$ | 서로 다른 두 실근 | x축과 두 교점 |<br />
+| $D=0$ | 중근(중복근) | 접함(한 점) |<br />
+| $D&lt;0$ | 실근 없음(허근) | x축과 교점 없음 |</p>
+<p>2) 인수 $(x-\alpha)^m$ 의 근에서의 동작<br />
+| $m$ | 동작 | 부호 변동 |<br />
+|:---:|:---|:---:|<br />
+| 짝수 | 접촉(반사) | 없음 |<br />
+| 홀수 | 관통(뚫고 지나감) | 있음 |</p>
+<p>3) 끝 행동 (leading term $ax^n$)<br />
+| $n$ (차수) | $a&gt;0$ (선도계수) | $a&lt;0$ |<br />
+|:---:|:---:|:---:|<br />
+| 짝수 | 양쪽 +∞에서 +∞ | 양쪽 +∞에서 -∞ |<br />
+| 홀수 | 왼쪽 -∞ → 오른쪽 +∞ | 왼쪽 +∞ → 오른쪽 -∞ |</p>
+<hr />
+<h2>문제해결 구조(Problem-solving steps)</h2>
+<ol>
+<li>식을 표준형(또는 인수분해)으로 정리: $ax^n+\dots$ 또는 $a\prod (x-\alpha_i)^{m_i}$  </li>
+<li>판별식·근(실수/허근) 확인(이차의 경우 $D$).  </li>
+<li>근의 위치 정렬(실근일 때) → 수직선 표시.  </li>
+<li>각 구간에서의 부호 판정:</li>
+<li>인수의 부호표(sign chart) 사용 또는 테스트 값 대입.  </li>
+<li>중복도 짝수/홀수 적용.  </li>
+<li>문제의 부등호(&gt;, &lt;, ≥, ≤)에 따라 포함 여부(등호 포함시 중근 포함 가능)를 결정.  </li>
+<li>해를 집합 형태로 정리(구간/합집합/교집합/공집합).  </li>
+<li>그래프 해석이 필요한 경우: 꼭지점, 축, 관통/접촉 표시로 직관적 판단 보강.</li>
+</ol>
+<hr />
+<h2>자주 하는 실전 최단 요령(핵심 요약)</h2>
+<ul>
+<li>이차부등식: 인수분해 후 수직선 위에 근 표시 → 구간별 부호 → 필요한 구간 선택.</li>
+<li>$D=0$이면 등호 포함 관계에서 특수 처리(중근에서 등호 성립).</li>
+<li>다차부등식: 인수의 중복도만 보면 그 근에서의 동작 즉시 파악 가능.</li>
+<li>완전제곱꼴로 쓰면 꼭지점($p,q$) 즉시 확보: $y=a(x-p)^2+q$.</li>
+<li>축은 근의 평균: $x=\dfrac{\alpha+\beta}{2}=-\dfrac{b}{2a}$.</li>
+</ul>
+<hr />
+<h2>Key Takeaways (실천 가능한 핵심)</h2>
+<ul>
+<li>(해법) 부등식 풀 때는 항상 인수분해 → 근 표시 → 구간부호 판단 순서로 작업.  </li>
+<li>(그래프 직관) 근의 다중도(짝수/홀수)로 '반사'인지 '관통'인지 빠르게 결정.  </li>
+<li>(이차 특화) 꼭지점은 완전제곱으로 찾아라. 축은 $x=-\dfrac{b}{2a}$, 꼭지점의 y좌표는 $q=c-\dfrac{b^2}{4a}$.  </li>
+<li>(판별식) $D=b^2-4ac$로 근의 존재·중근 여부 판정. 부등식의 해는 판별식과 $a$의 부호 결합으로 결정.  </li>
+<li>(허근 처리) 근이 허근이라도 $\alpha+\beta=-\dfrac{b}{a}$, $\alpha\beta=\dfrac{c}{a}$ 는 항상 성립. 축·대칭성 판단에 활용 가능.  </li>
+<li>(시각화) 수직선·사인 차트(부호표)는 가장 효율적이고 실전적. 복잡한 인수조합도 동일 원리 적용.</li>
+</ul>
+<hr />
+<h2>개선이 필요한 부분(내용 부족·보완 제안)</h2>
+<ul>
+<li>미적분 연계: 3차 이상에서 극값·변곡점을 명확히 파악하려면 도함수 사용 필요. 전사에서는 미적분으로 정밀하게 짚는다며 구체적 설명이 부족.<br />
+  제안: 대표 예제 하나를 골라 $f'(x)=0$으로 극값 위치 구한 뒤 원래 그래프와 비교하는 절차 추가.</li>
+<li>수치 예제·단계별 풀이 부족: 강의 전사에는 규칙과 직관이 있으나 '한 문제를 처음부터 끝까지 풀이' 예시가 적음.<br />
+  제안: (1) 이차 부등식 기본 예제, (2) 3차 인수분해 사례, (3) 한 케이스에서 허근 포함된 예제를 단계별로 풀어 보강.</li>
+<li>엄밀성(증명): "짝수차는 반사" 등 직관은 제시됨. 그러나 엄밀히는 다중도 정의와 부호변화 논증(인접 구간의 인수 부호 변화)을 짧게 증명하면 더 탄탄.<br />
+  제안: 각 규칙 옆에 한두 문장의 간단한 논리(예: 인수 하나가 제곱이면 항상 양수 등) 추가.</li>
+</ul>
+<hr />
+<hr />
+<p>Insights (추가 연구·확장 지식)<br />
+- 다중도와 도함수 관계: 만약 $f(x)=(x-\alpha)^m g(x)$ (단, $g(\alpha)\neq0$) 이면 $\alpha$는 $f$의 도함수 $f'(x)$에서도 중복도로 근을 갖는다(적어도 $m-1$차). 즉 중복근이면 도함수에도 영향을 주어 꼭지점·평평한 접촉 형태를 설명 가능. 실전에서는 중복도가 높을수록 근 근처에서의 "평평함" 관찰됨.<br />
+- 로르(Rolle)·중간값 정리(미적분 연계): 연속함수인 다항함수는 서로 다른 두 근 사이에 도함수의 근(극값)이 존재. 3차 다항함수에서 근의 배열은 반드시 도함수의 근과 연결되므로, 인수구조를 통해 극값 개수(최대 2개)도 예측 가능.<br />
+- 근의 위치 추적(유리근정리·근의 범위): 유리근정리(rational root theorem)로 정수 계수 다항식의 유리근 후보를 좁힐 수 있다. 코너 문제에서 인수분해를 시도할 때 빠른 후보 선정에 유용.<br />
+- 실근의 상한·하한: Cauchy, Lagrange 등 근의 범위 정리로 다항식의 실근들이 어느 범위에 있는지 추정 가능 → 수치해석적 근사 및 초기값 선택에 도움.<br />
+- Descartes의 부호법: 다항식의 양의 실근 개수에 대한 상한을 빠르게 얻을 수 있음(부호변화의 수). 문제에서 "실근 몇 개인지" 묻는 유형에서 유용.<br />
+- Sturm 체계: 실근의 정확한 수를 구하고 구간별 실근 개수를 판정할 때 쓰임(고급). 수능/대학입시 수준보다는 심화 주제이나, 어려운 문제에서 근 횟수를 엄밀하게 판단해야 할 때 참고.</p>
+<p>간단한 응용/예시(추가)<br />
+- 예시 1 (이차부등식):<br />
+  - 문제: $x^2-3x+2&gt;0$<br />
+  - 인수분해: $(x-1)(x-2)&gt;0$ → 해: $(-\infty,1)\cup(2,\infty)$.<br />
+- 예시 2 (중복근 사례):<br />
+  - $f(x)=x^3-3x^2+3x-1=(x-1)^3$ → 근 $1$은 중복도 3(홀수) → 관통. 그러나 함수는 근 근처에서 평평하게(derivative zero of multiplicity 2) 관통.<br />
+- 예시 3 (완전제곱 확인):<br />
+  - $y=2x^2-8x+10 = 2(x-2)^2+2$ → 꼭지점 $(2,2)$, $y\ge2$.</p>
+<p>참조 가능한 내용(권장 추가 학습)<br />
+- 미적분 기초: 도함수로 극값·변곡점 확인, 그래프 정밀화<br />
+- 다항식 인수분해 기법: 인수정리, 합성분해, 유리근정리<br />
+- 복소수와 다항식: 켤레근 성질, 계수와 근 사이의 관계(근과 계수의 관계)</p>
+<p>끝.</p>
+    </div>
+</body>
+</html>

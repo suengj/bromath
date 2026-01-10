@@ -96,12 +96,18 @@ p10_bromath/
 - `transcribe_audio()`: 단일 오디오 파일 전사
 - `transcribe_all()`: 여러 오디오 파일 일괄 전사 (진행률 표시)
 - `_load_model()`: 모델 타입에 따라 적절한 Whisper 모델 로드
+- `_save_srt_file()`: SRT 자막 파일 저장
+- `_format_timestamp()`: SRT 형식 타임스탬프 변환
 
 **특징**:
 - 한국어 전사 특화 (language="ko")
 - tqdm으로 진행률 표시
 - 이미 전사된 파일 건너뛰기 옵션
 - 전사 시간 및 파일 크기 정보 출력
+- **SRT 자막 파일 생성 지원** (`extract_srt=True`):
+  - MLX Whisper: `word_timestamps=True`로 segments 정보 추출
+  - 타임스탬프가 포함된 SRT 파일 자동 생성 (파일명: `{원본명}_SRT.srt`)
+  - 이미 전사된 txt 파일이 있어도 SRT만 추가 생성 가능
 
 ---
 
@@ -192,6 +198,9 @@ p10_bromath/
   **2단계: extracted_audio → transcribed → structured**
   - `extracted_audio/` 폴더의 .wav 파일 찾기
   - STT 전사하여 `transcribed/`에 .txt 저장
+  - **SRT 자막 파일 생성** (`config.EXTRACT_SRT=True`일 때):
+    - `extract_srt=True`로 전사 시 `{파일명}_SRT.srt` 파일 자동 생성
+    - 이미 전사된 txt 파일이 있지만 SRT 파일이 없는 경우 SRT만 별도 생성
   - 전사된 텍스트를 GPT로 구조화하여 `structured/`에 저장
   - 각 단계별 완료 상태를 로그에 기록
 
@@ -225,9 +234,9 @@ structured/*.md, *.html
     ↓
 extracted_audio/*.wav
     ↓
-[STTTranscriber: Whisper]
-    ↓
-transcribed/*.txt
+[STTTranscriber: Whisper (MLX turbo)]
+    ↓ (extract_srt=True일 때)
+transcribed/*.txt + transcribed/*_SRT.srt
     ↓
 [TextProcessor: GPT]
     ↓
@@ -367,3 +376,86 @@ run_full_pipeline.py (통합 실행)
 - OpenAI Whisper는 범용적으로 사용 가능하지만 느릴 수 있음
 - GPT 모델은 비용이 발생하므로 토큰 범위 설정 중요
 - HTML 출력 시 MathJax CDN 사용 (온라인 환경 필요)
+- SRT 파일 생성은 `config.EXTRACT_SRT=True`로 활성화 (기본값: True)
+
+---
+
+## 최근 업데이트 내역 (2026-01-09)
+
+### 1. SRT 자막 파일 생성 기능 추가
+
+**업데이트 내용**:
+- `config.py`에 `EXTRACT_SRT = True` 설정 추가
+- `stt_transcriber.py`에 SRT 파일 생성 기능 구현
+  - MLX Whisper: `word_timestamps=True`로 segments 정보 추출
+  - `_save_srt_file()` 메서드로 SRT 형식 자막 파일 생성
+  - 파일명 형식: `{원본파일명}_SRT.srt`
+- `run_full_pipeline.py` 수정:
+  - 이미 전사된 txt 파일이 있지만 SRT 파일이 없는 경우 자동으로 SRT 생성
+  - `files_to_generate_srt` 리스트로 SRT만 필요한 파일 별도 처리
+
+**사용법**:
+```python
+# config.py에서 설정
+EXTRACT_SRT = True  # SRT 파일 생성 활성화
+
+# run_full_pipeline.py 실행 시 자동으로 SRT 생성
+python run_full_pipeline.py
+```
+
+**출력 파일**:
+- `transcribed/{파일명}.txt`: 전사된 텍스트
+- `transcribed/{파일명}_SRT.srt`: 타임스탬프가 포함된 자막 파일
+
+---
+
+### 2. Lightning-SimulWhisper 테스트 (미사용)
+
+**시도 내용**:
+- Lightning-SimulWhisper는 Apple Silicon에서 Whisper 모델을 실시간으로 동작시키기 위한 초고속 로컬 음성 인식 시스템
+- 인코딩 속도: PyTorch 기반 Whisper 대비 최대 18배 빠름 (CoreML 가속)
+- 디코딩 속도: 최대 15배 빠름 (MLX 프레임워크)
+
+**설치 및 테스트**:
+1. 프로젝트 클론: `/Users/suengj/Documents/Code/Python/PJT/Lightning-SimulWhisper`
+2. 기본 의존성 설치: `librosa`, `mlx`, `tqdm`, `tiktoken`, `onnxruntime`
+3. CoreML 가속 도구 설치: `coremltools`, `ane_transformers`
+4. 코드 통합:
+   - `stt_lightning_simulwhisper.py` 모듈 생성
+   - `config.py`에 Lightning-SimulWhisper 설정 추가
+
+**발견된 문제**:
+- MLX 라이브러리 초기화 크래시: MLX 직접 import 시 발생하는 문제로, import 방식 수정하여 해결
+- 모델 다운로드 이슈: HuggingFace에서 `mlx-community/whisper-base-mlx` 모델 자동 다운로드 시 시간 소요 및 실패 가능
+- 출력 파싱 문제: simulstreaming_whisper.py의 출력 형식 파싱 필요
+- 실행 환경 문제: 실제 실행 시 여러 의존성 및 경로 문제 발생
+
+**결정사항**:
+- 현재는 기존 MLX Whisper turbo 모델 사용 유지
+- Lightning-SimulWhisper는 별도 클래스(`LightningSimulWhisperTranscriber`)로 구현되어 있어 기존 코드와 충돌 없음
+- 향후 안정화되면 재검토 예정
+
+**관련 파일**:
+- `stt_lightning_simulwhisper.py`: Lightning-SimulWhisper 통합 클래스
+- `tbd/LIGHTNING_SIMUL_WHISPER_SETUP.md`: 설치 및 사용 가이드
+- `tbd/test_lightning_simulwhisper.py`: 성능 비교 테스트 스크립트
+- `config.py`: `LIGHTNING_SIMUL_WHISPER_ENABLED = True` (테스팅용, 현재 비활성화)
+
+---
+
+### 3. 파이프라인 프로세스 정리
+
+**전체 프로세스**:
+1. **extracted_audio** (.wav 파일)
+   ↓
+2. **Whisper MLX turbo 전사** (extract_srt=True)
+   ↓
+3. **transcribed/** 저장
+   - `{파일명}.txt`: 전사된 텍스트
+   - `{파일명}_SRT.srt`: 타임스탬프 자막 파일 (생성 옵션)
+   ↓
+4. **GPT 구조화**
+   ↓
+5. **structured/** 저장
+   - `{날짜}_{파일명}.md`: 구조화된 마크다운
+   - `{날짜}_{파일명}.html`: HTML (MathJax 지원)
